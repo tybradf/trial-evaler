@@ -1,4 +1,4 @@
-# Clinical Trial Matching: An Eval Harness for RAG Pipelines
+# Clinical Trial Matching: An Evaluation Harness for RAG Pipelines
 
 **A retrieve-then-judge LLM pipeline for clinical trial eligibility misses a true exclusion in about 1 of every 120 cases on held-out data — down from 1 in 15 for a 2.5x cheaper model. Raw accuracy alone would have missed this entirely; the two models are statistically tied on it.**
 
