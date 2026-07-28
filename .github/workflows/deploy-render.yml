@@ -1,0 +1,25 @@
+name: Deploy live app to Render
+
+# Triggers a deploy of the full Flask app (dashboard + explore + live demo)
+# on Render via its deploy hook. Optional in one sense -- Render's native
+# GitHub integration would auto-deploy on push without this file at all --
+# but this makes the trigger an explicit, visible GitHub Actions step
+# rather than something happening silently on Render's side.
+#
+# Setup: create the web service on Render (New -> Blueprint -> point at
+# this repo, it'll read render.yaml), copy its Deploy Hook URL from the
+# service's Settings page, and store it as a repo secret named
+# RENDER_DEPLOY_HOOK_URL (Settings -> Secrets and variables -> Actions).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy
+        run: |
+          curl -f -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
