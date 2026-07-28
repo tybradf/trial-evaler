@@ -1,5 +1,6 @@
 services:
   - type: web
+    plan: free
     name: trial-evaler
     runtime: python
     rootDir: app
