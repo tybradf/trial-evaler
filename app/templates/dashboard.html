@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block title %}Eval report — Trial Match Eval{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Held-out test set — TREC Clinical Trials 2022</span>
+    <h1>A retrieve-then-judge pipeline misses a true exclusion in about 1 of every 120 cases — and we know exactly which trade bought that.</h1>
+    <p class="hero-sub">
+      This benchmark scores an LLM-judged clinical trial matching pipeline against real physician
+      eligibility determinations across {{ '{:,}'.format(data.headline.n_trials) }} trials. The finding isn't
+      just an accuracy number — it's which errors the model makes, how often, and what it costs to avoid the
+      dangerous ones.
+    </p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Headline numbers, held-out data</h2>
+      <div class="section-note">Sonnet (zero-shot), the selected production config — see the model comparison below for why.</div>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-panel">
+        <div class="metric-label">Missed exclusions</div>
+        <div class="metric-value flag">{{ '%.1f' % (data.headline.sonnet_missed_exclusion_rate * 100) }}%</div>
+        <div class="metric-ref">the dangerous error — ref. &lt;1%</div>
+      </div>
+      <div class="metric-panel">
+        <div class="metric-label">Accuracy, when committed</div>
+        <div class="metric-value">{{ '%.1f' % (data.headline.sonnet_accuracy_committed * 100) }}%</div>
+        <div class="metric-ref">excludes hedged cases</div>
+      </div>
+      <div class="metric-panel">
+        <div class="metric-label">Abstention rate</div>
+        <div class="metric-value amber">{{ '%.1f' % (data.headline.sonnet_abstention_rate * 100) }}%</div>
+        <div class="metric-ref">routed to human review</div>
+      </div>
+      <div class="metric-panel">
+        <div class="metric-label">Corpus size</div>
+        <div class="metric-value">{{ '{:,}'.format(data.headline.n_trials) }}</div>
+        <div class="metric-ref">real ClinicalTrials.gov trials</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Choose the judge model</h2>
+      <div class="section-note">Both are locked-in, evaluated configs — not a hypothetical toggle. Numbers are real held-out results.</div>
+    </div>
+    <div class="model-toggle">
+      {% for key, cfg in models.items() %}
+      <div class="model-option {{ 'selected' if key == 'sonnet_zero_shot' }}">
+        <div class="model-option-head">
+          <span class="model-option-name">{{ cfg.display_name }}</span>
+          <span class="model-option-tag">{{ cfg.positioning }}</span>
+        </div>
+        <div class="model-option-summary">{{ cfg.summary }}</div>
+        <div class="model-option-stats">
+          <div><span class="model-option-stat-label">Missed excl.</span>{{ '%.1f' % (cfg.tradeoff_missed_exclusion_rate * 100) }}%</div>
+          <div><span class="model-option-stat-label">Abstention</span>{{ '%.1f' % (cfg.tradeoff_abstention_rate * 100) }}%</div>
+          <div><span class="model-option-stat-label">$ / 1k pairs</span>${{ '%.2f' % cfg.tradeoff_cost_per_1k_usd }}</div>
+        </div>
+        <div class="model-option-note">{{ cfg.tradeoff_note }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Retrieval: general-purpose vs. biomedical embeddings</h2>
+      <div class="section-note">General-purpose embeddings won — biomedical (MedCPT) failed specifically on textbook-style vignettes, not real clinical notes. Full explanation in the write-up.</div>
+    </div>
+    <table class="data">
+      <thead>
+        <tr><th>Year</th><th>Model</th><th>nDCG@10</th><th>Recall@10</th><th>Recall@50</th><th>Recall@100</th></tr>
+      </thead>
+      <tbody>
+        {% for row in data.retrieval_metrics %}
+        <tr class="{{ 'highlight' if row.model == 'general' }}">
+          <td>{{ row.year }}</td>
+          <td>{{ row.model }}</td>
+          <td>{{ '%.3f' % row['ndcg@10'] }}</td>
+          <td>{{ '%.3f' % row['recall_eligible@10'] }}</td>
+          <td>{{ '%.3f' % row['recall_eligible@50'] }}</td>
+          <td>{{ '%.3f' % row['recall_eligible@100'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Judge comparison — held-out (2022)</h2>
+      <div class="section-note">Raw accuracy is nearly tied between models. The clinically-weighted cost and missed-exclusion rate are what actually differentiate them.</div>
+    </div>
+    <table class="data">
+      <thead>
+        <tr><th>Config</th><th>Accuracy (strict)</th><th>Clinical cost</th><th>Abstention</th><th>Missed exclusion</th><th>$ / 1k pairs</th></tr>
+      </thead>
+      <tbody>
+        {% for row in data.judge_test_summary %}
+        {% set cost_row = (data.cost_quality_test | selectattr('combo', 'equalto', row.combo) | first) %}
+        <tr class="{{ 'highlight' if row.combo == 'sonnet_zero_shot' }}">
+          <td>{{ row.combo.replace('_', ' ') }}</td>
+          <td>{{ '%.3f' % row.accuracy_strict }}</td>
+          <td>{{ '%.3f' % row.mean_cost }}</td>
+          <td>{{ '%.1f' % (row.abstention_rate * 100) }}%</td>
+          <td class="flag-cell">{{ '%.1f' % (row.missed_exclusion_rate * 100) }}%</td>
+          <td>{{ '$%.2f' % cost_row.cost_per_1k_pairs_usd if cost_row else '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Confusion matrix — Sonnet, held-out</h2>
+      <div class="section-note">Rows: physician ground truth. Columns: judge verdict.</div>
+    </div>
+    {% set cm = data.confusion_matrices_test.get('sonnet_zero_shot') %}
+    {% if cm %}
+    <table class="data">
+      <thead>
+        <tr><th>Ground truth</th><th>Predicted excluded</th><th>Predicted eligible</th><th>Predicted insufficient info</th></tr>
+      </thead>
+      <tbody>
+        {% for gt, row in cm.items() %}
+        <tr>
+          <td><span class="badge badge-{{ gt }}">{{ gt }}</span></td>
+          <td class="{{ 'flag-cell' if gt == 'excluded' }}">{{ row.excluded }}</td>
+          <td class="{{ 'flag-cell' if gt == 'excluded' }}">{{ row.eligible }}</td>
+          <td>{{ row.insufficient_information }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Go deeper</h2>
+    </div>
+    <p><a href="{{ nav.explore }}">Browse individual held-out cases →</a> with full patient text, trial criteria, and judge reasoning side by side against physician ground truth.</p>
+    <p><a href="{{ nav.live }}"{{ ' target="_blank" rel="noopener"' | safe if is_static_build }}>Try the live demo →</a> against currently-recruiting trials pulled fresh from ClinicalTrials.gov.</p>
+  </div>
+</section>
+
+{% endblock %}

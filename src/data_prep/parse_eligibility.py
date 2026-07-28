@@ -23,8 +23,8 @@ on first run -- formatting is not perfectly consistent across older trials
 """
 import re
 
-EXCLUSION_HEADER_RE = re.compile(r"exclusion\s*criteria\s*:?", re.IGNORECASE)
-INCLUSION_HEADER_RE = re.compile(r"inclusion\s*criteria\s*:?", re.IGNORECASE)
+EXCLUSION_HEADER_RE = re.compile(r"exclusion\s*criteria\s*:?|exclusion\s*:", re.IGNORECASE)
+INCLUSION_HEADER_RE = re.compile(r"inclusion\s*criteria\s*:?|inclusion\s*:", re.IGNORECASE)
 BULLET_RE = re.compile(r"^\s*[\*\-\u2022]\s*|^\s*\d+[\.\)]\s*")
 
 

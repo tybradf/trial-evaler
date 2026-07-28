@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Explore cases — Trial Match Eval{% endblock %}
+{% block content %}
+
+<section class="hero" style="padding: 36px 0 28px;">
+  <div class="wrap">
+    <span class="eyebrow">Real held-out pairs, 2022</span>
+    <h1 style="font-size: 1.7rem;">Explore individual cases</h1>
+    <p class="hero-sub">Each case includes the full patient vignette, the real trial's inclusion/exclusion
+      criteria, and every judge model's verdict — including a case the model got wrong on purpose to show,
+      not just wins.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="case-picker" id="case-picker">
+      {% for pair in pairs %}
+      <button data-index="{{ loop.index0 }}" class="{{ 'active' if loop.first }}">
+        Case {{ loop.index }} — {{ pair.ground_truth }}
+      </button>
+      {% endfor %}
+    </div>
+
+    {% for pair in pairs %}
+    <div class="case-card" data-case-index="{{ loop.index0 }}" style="{{ '' if loop.first else 'display:none;' }}">
+      <div class="case-card-section">
+        <div class="case-card-label">Patient vignette — TREC topic {{ pair.query_id }}</div>
+        <div class="patient-text">{{ pair.patient_text }}</div>
+      </div>
+
+      <div class="case-card-section">
+        <div class="case-card-label">Trial — {{ pair.doc_id }}</div>
+        <h3>{{ pair.trial_title }}</h3>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px;">
+          <div>
+            <div class="case-card-label">Inclusion</div>
+            <ul class="criteria-list">
+              {% for c in pair.inclusion_criteria %}<li>{{ c }}</li>{% endfor %}
+            </ul>
+          </div>
+          <div>
+            <div class="case-card-label">Exclusion</div>
+            <ul class="criteria-list">
+              {% for c in pair.exclusion_criteria %}<li>{{ c }}</li>{% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card-section">
+        <div class="case-card-label">
+          Physician ground truth:
+          <span class="badge badge-{{ pair.ground_truth }}">{{ pair.ground_truth }}</span>
+        </div>
+        <div class="verdict-grid" style="margin-top: 14px;">
+          {% for combo_key, verdict in pair.verdicts.items() %}
+          {% set cfg = models.get(combo_key) %}
+          <div class="verdict-card">
+            <div class="verdict-card-head">
+              <span class="verdict-card-name">{{ cfg.display_name if cfg else combo_key }}</span>
+              <span class="badge badge-{{ 'match' if verdict.label == pair.ground_truth else 'mismatch' }}">
+                {{ verdict.label }}
+              </span>
+            </div>
+            <div class="verdict-citation">“{{ verdict.cited_criterion }}”</div>
+            <div class="verdict-rationale">{{ verdict.rationale }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script src="{{ asset_prefix }}explore.js"></script>
+{% endblock %}

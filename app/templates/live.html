@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Live demo — Trial Match Eval{% endblock %}
+{% block content %}
+
+<section class="hero" style="padding: 36px 0 28px;">
+  <div class="wrap">
+    <span class="eyebrow">Live — not the frozen benchmark</span>
+    <h1 style="font-size: 1.7rem;">Try it against real, currently-recruiting trials</h1>
+    <p class="hero-sub">Describe a patient, search a condition against ClinicalTrials.gov right now, pick a
+      trial, and get a live eligibility judgment. There's no ground truth here — this proves the pipeline
+      runs, it doesn't score it.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+
+    <div class="disclaimer">
+      Demo only — not medical advice, not connected to any real patient record, and not scored against
+      ground truth (unlike the benchmark cases under "Explore cases"). For illustration only.
+    </div>
+
+    <div class="section-head">
+      <h2>1. Choose the judge model</h2>
+    </div>
+    <div class="model-toggle" id="model-toggle">
+      {% for key, cfg in models.items() %}
+      <div class="model-option {{ 'selected' if key == default_model }}" data-model-key="{{ key }}">
+        <div class="model-option-head">
+          <span class="model-option-name">{{ cfg.display_name }}</span>
+          <span class="model-option-tag">{{ cfg.positioning }}</span>
+        </div>
+        <div class="model-option-summary">{{ cfg.summary }}</div>
+        <div class="model-option-note">{{ cfg.tradeoff_note }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="section-head" style="margin-top: 32px;">
+      <h2>2. Describe the patient</h2>
+    </div>
+    <div class="field">
+      <textarea id="patient-text" placeholder="e.g. 52-year-old woman with newly diagnosed stage II breast cancer, ECOG performance status 1, no prior chemotherapy or radiation. Normal renal and hepatic function."></textarea>
+    </div>
+
+    <div class="section-head" style="margin-top: 8px;">
+      <h2>3. Search current trials</h2>
+    </div>
+    <div class="field" style="display:flex; gap: 10px;">
+      <input type="text" id="condition-input" placeholder="e.g. breast cancer">
+      <button class="btn" id="search-btn">Search ClinicalTrials.gov</button>
+    </div>
+    <div id="search-status" class="section-note"></div>
+    <div id="search-results" style="margin-top: 16px; display: grid; gap: 10px;"></div>
+
+    <div id="judge-section" style="margin-top: 32px; display: none;">
+      <div class="section-head">
+        <h2>4. Judgment</h2>
+      </div>
+      <div id="judge-status" class="section-note"></div>
+      <div id="judge-result"></div>
+    </div>
+
+  </div>
+</section>
+
+<script src="{{ asset_prefix }}live.js"></script>
+{% endblock %}

@@ -1,0 +1,87 @@
+{
+  "retrieval_metrics": [
+    {"year": 2021, "model": "general", "ndcg@10": 0.4606, "recall_eligible@10": 0.0784, "recall_eligible@50": 0.2523, "recall_eligible@100": 0.3700},
+    {"year": 2021, "model": "biomed", "ndcg@10": 0.2192, "recall_eligible@10": 0.0243, "recall_eligible@50": 0.0821, "recall_eligible@100": 0.1344},
+    {"year": 2022, "model": "general", "ndcg@10": 0.4915, "recall_eligible@10": 0.0900, "recall_eligible@50": 0.2466, "recall_eligible@100": 0.3547},
+    {"year": 2022, "model": "biomed", "ndcg@10": 0.2697, "recall_eligible@10": 0.0377, "recall_eligible@50": 0.1063, "recall_eligible@100": 0.1544}
+  ],
+  "judge_dev_summary": [
+    {"combo": "haiku_zero_shot", "accuracy_strict": 0.558, "accuracy_committed": 0.684, "abstention_rate": 0.183, "mean_cost": 0.550, "missed_exclusion_rate": 0.050, "recall_excluded": 0.800, "precision_excluded": 0.658, "f1_excluded": 0.722, "recall_eligible": 0.317, "precision_eligible": 0.760, "f1_eligible": 0.447},
+    {"combo": "haiku_few_shot", "accuracy_strict": 0.592, "accuracy_committed": 0.703, "abstention_rate": 0.158, "mean_cost": 0.496, "missed_exclusion_rate": 0.042, "recall_excluded": 0.867, "precision_excluded": 0.675, "f1_excluded": 0.759, "recall_eligible": 0.317, "precision_eligible": 0.792, "f1_eligible": 0.452},
+    {"combo": "sonnet_zero_shot", "accuracy_strict": 0.592, "accuracy_committed": 0.789, "abstention_rate": 0.250, "mean_cost": 0.283, "missed_exclusion_rate": 0.000, "recall_excluded": 0.850, "precision_excluded": 0.729, "f1_excluded": 0.785, "recall_eligible": 0.333, "precision_eligible": 1.000, "f1_eligible": 0.500},
+    {"combo": "sonnet_few_shot", "accuracy_strict": 0.558, "accuracy_committed": 0.770, "abstention_rate": 0.275, "mean_cost": 0.304, "missed_exclusion_rate": 0.000, "recall_excluded": 0.833, "precision_excluded": 0.714, "f1_excluded": 0.769, "recall_eligible": 0.283, "precision_eligible": 1.000, "f1_eligible": 0.442}
+  ],
+  "judge_test_summary": [
+    {"combo": "haiku_zero_shot", "accuracy_strict": 0.467, "accuracy_committed": 0.667, "abstention_rate": 0.300, "mean_cost": 0.650, "missed_exclusion_rate": 0.067, "recall_excluded": 0.667, "precision_excluded": 0.667, "f1_excluded": 0.667, "recall_eligible": 0.267, "precision_eligible": 0.667, "f1_eligible": 0.381},
+    {"combo": "sonnet_zero_shot", "accuracy_strict": 0.442, "accuracy_committed": 0.791, "abstention_rate": 0.442, "mean_cost": 0.371, "missed_exclusion_rate": 0.008, "recall_excluded": 0.683, "precision_excluded": 0.759, "f1_excluded": 0.719, "recall_eligible": 0.200, "precision_eligible": 0.923, "f1_eligible": 0.329}
+  ],
+  "cost_quality_dev": [
+    {"combo": "haiku_zero_shot", "cost_per_1k_pairs_usd": 2.602625},
+    {"combo": "haiku_few_shot", "cost_per_1k_pairs_usd": 2.945125},
+    {"combo": "sonnet_zero_shot", "cost_per_1k_pairs_usd": 6.554167},
+    {"combo": "sonnet_few_shot", "cost_per_1k_pairs_usd": 7.569083}
+  ],
+  "cost_quality_test": [
+    {"combo": "haiku_zero_shot", "cost_per_1k_pairs_usd": 2.593725},
+    {"combo": "sonnet_zero_shot", "cost_per_1k_pairs_usd": 6.522300}
+  ],
+  "confusion_matrices_test": {
+    "haiku_zero_shot": {
+      "eligible": {"excluded": 20, "eligible": 16, "insufficient_information": 24},
+      "excluded": {"excluded": 40, "eligible": 8, "insufficient_information": 12}
+    },
+    "sonnet_zero_shot": {
+      "eligible": {"excluded": 13, "eligible": 12, "insufficient_information": 35},
+      "excluded": {"excluded": 41, "eligible": 1, "insufficient_information": 18}
+    }
+  },
+  "explorer_pairs": [
+    {
+      "query_id": 1,
+      "doc_id": "NCT00643591",
+      "patient_text": "Patient is a 45-year-old man with a history of anaplastic astrocytoma of the spine complicated by severe lower extremity weakness and urinary retention s/p Foley catheter, high-dose steroids, hypertension, and chronic pain. The tumor is located in the T-L spine, unresectable anaplastic astrocytoma s/p radiation. Complicated by progressive lower extremity weakness and urinary retention.",
+      "trial_title": "Positron Emission Tomography-Computed Tomography (PET-CT) High-grade Glioma",
+      "inclusion_criteria": ["Histologically confirmed gliomas III - IV (glioblastoma, anaplastic astrocytoma, gliosarcoma) at primary diagnosis", "Age >18 years"],
+      "exclusion_criteria": ["No previous radiotherapy to the head and neck and brain area.", "No previous chemotherapy before treatment of the glioma."],
+      "ground_truth": "eligible",
+      "verdicts": {
+        "sonnet_zero_shot": {"label": "excluded", "cited_criterion": "No previous radiotherapy to the head and neck and brain area.", "rationale": "This prior radiotherapy to the spine/brain area directly contradicts the inclusion criterion requiring no previous radiotherapy to the head and neck and brain area."},
+        "haiku_zero_shot": {"label": "excluded", "cited_criterion": "No previous radiotherapy to the head and neck and brain area.", "rationale": "The patient received field radiation, which conflicts with the trial's exclusion of prior radiotherapy."}
+      }
+    },
+    {
+      "query_id": 33,
+      "doc_id": "NCT01223885",
+      "patient_text": "A 42-year-old healthy woman came to the clinic to have her flu shot in early October. She works in a rehab center and has no underlying disease. She is married for 5 years and uses barrier methods of contraception. Her menstrual cycle is irregular. She does not smoke. She is not on any medications. She has no history of allergies to any food or drugs. Her past surgical history is significant for tonsillectomy and she is otherwise healthy.",
+      "trial_title": "Camel's Milk as a Safe Alternative in Cow's Milk Allergy",
+      "inclusion_criteria": ["Proved cow's milk allergy"],
+      "exclusion_criteria": ["Pregnant women"],
+      "ground_truth": "eligible",
+      "verdicts": {
+        "sonnet_zero_shot": {"label": "excluded", "cited_criterion": "Pregnant women", "rationale": "The patient's contraceptive use and clinical context suggest possible pregnancy status that would trigger this exclusion criterion."},
+        "haiku_zero_shot": {"label": "excluded", "cited_criterion": "Pregnant women", "rationale": "Given the reproductive context described, pregnancy cannot be ruled out, triggering the exclusion criterion."}
+      }
+    },
+    {
+      "query_id": 2,
+      "doc_id": "NCT00000525",
+      "patient_text": "48 M with a h/o HTN hyperlipidemia, bicuspid aortic valve, and tobacco abuse who presented to his cardiologist with progressive SOB and LE edema. TTE revealed severe aortic stenosis with worsening LV function. EF was 25%. RV pressure was 41 and had biatrial enlargement.",
+      "trial_title": "Diuretics, Hypertension, and Arrhythmias Clinical Trial",
+      "inclusion_criteria": ["Diagnosis of hypertension", "Age 40-79"],
+      "exclusion_criteria": ["Severe valvular heart disease requiring intervention", "EF less than 30%"],
+      "ground_truth": "excluded",
+      "verdicts": {
+        "sonnet_zero_shot": {"label": "excluded", "cited_criterion": "EF less than 30%", "rationale": "Patient's EF of 25% falls below the 30% threshold, and severe aortic stenosis constitutes valvular disease requiring intervention -- both independently trigger exclusion."},
+        "haiku_zero_shot": {"label": "excluded", "cited_criterion": "EF less than 30%", "rationale": "EF of 25% is below the exclusion threshold of 30%."}
+      }
+    }
+  ],
+  "headline": {
+    "n_trials": 48713,
+    "n_topics_2021": 75,
+    "n_topics_2022": 50,
+    "sonnet_missed_exclusion_rate": 0.008,
+    "sonnet_accuracy_committed": 0.791,
+    "sonnet_abstention_rate": 0.442
+  }
+}

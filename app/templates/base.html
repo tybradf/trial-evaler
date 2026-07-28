@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Trial Match Eval{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset_prefix }}style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="{{ nav.dashboard }}">
+        <span class="brand-mark">RX</span>
+        <span class="brand-text">Trial Match Eval</span>
+      </a>
+      <nav class="site-nav">
+        <a href="{{ nav.dashboard }}" class="{{ 'active' if active_page == 'dashboard' }}">Eval report</a>
+        <a href="{{ nav.explore }}" class="{{ 'active' if active_page == 'explore' }}">Explore cases</a>
+        <a href="{{ nav.live }}" class="{{ 'active' if active_page == 'live' }}"{{ ' target="_blank" rel="noopener"' | safe if is_static_build }}>Live demo{{ ' ↗' if is_static_build }}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Benchmark for retrieve-then-judge clinical trial matching pipelines, scored against physician ground truth (TREC Clinical Trials 2021/2022).</p>
+    </div>
+  </footer>
+</body>
+</html>
