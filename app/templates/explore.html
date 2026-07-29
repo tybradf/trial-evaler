@@ -5,74 +5,47 @@
 <section class="hero" style="padding: 36px 0 28px;">
   <div class="wrap">
     <span class="eyebrow">Real held-out pairs, 2022</span>
-    <h1 style="font-size: 1.7rem;">Explore individual cases</h1>
-    <p class="hero-sub">Each case includes the full patient vignette, the real trial's inclusion/exclusion
-      criteria, and every judge model's verdict — including a case the model got wrong on purpose to show,
-      not just wins.</p>
+    <h1 style="font-size: 1.7rem;">Explore by outcome</h1>
+    <p class="hero-sub">Every held-out case, grouped by what actually happened: correct, missed exclusion,
+      over-exclusion, or abstained — for whichever judge model you select below. Switch models to see the
+      groups recompute live.</p>
   </div>
 </section>
 
 <section class="block">
   <div class="wrap">
-    <div class="case-picker" id="case-picker">
-      {% for pair in pairs %}
-      <button data-index="{{ loop.index0 }}" class="{{ 'active' if loop.first }}">
-        Case {{ loop.index }} — {{ pair.ground_truth }}
-      </button>
+
+    <div class="section-head">
+      <h2>Judge model</h2>
+    </div>
+    <div class="model-toggle" id="explore-model-toggle">
+      {% for key, cfg in models.items() %}
+      <div class="model-option {{ 'selected' if key == default_model }}" data-model-key="{{ key }}">
+        <div class="model-option-head">
+          <span class="model-option-name">{{ cfg.display_name }}</span>
+          <span class="model-option-tag">{{ cfg.positioning }}</span>
+        </div>
+        <div class="model-option-summary">{{ cfg.summary }}</div>
+      </div>
       {% endfor %}
     </div>
 
-    {% for pair in pairs %}
-    <div class="case-card" data-case-index="{{ loop.index0 }}" style="{{ '' if loop.first else 'display:none;' }}">
-      <div class="case-card-section">
-        <div class="case-card-label">Patient vignette — TREC topic {{ pair.query_id }}</div>
-        <div class="patient-text">{{ pair.patient_text }}</div>
-      </div>
-
-      <div class="case-card-section">
-        <div class="case-card-label">Trial — {{ pair.doc_id }}</div>
-        <h3>{{ pair.trial_title }}</h3>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px;">
-          <div>
-            <div class="case-card-label">Inclusion</div>
-            <ul class="criteria-list">
-              {% for c in pair.inclusion_criteria %}<li>{{ c }}</li>{% endfor %}
-            </ul>
-          </div>
-          <div>
-            <div class="case-card-label">Exclusion</div>
-            <ul class="criteria-list">
-              {% for c in pair.exclusion_criteria %}<li>{{ c }}</li>{% endfor %}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="case-card-section">
-        <div class="case-card-label">
-          Physician ground truth:
-          <span class="badge badge-{{ pair.ground_truth }}">{{ pair.ground_truth }}</span>
-        </div>
-        <div class="verdict-grid" style="margin-top: 14px;">
-          {% for combo_key, verdict in pair.verdicts.items() %}
-          {% set cfg = models.get(combo_key) %}
-          <div class="verdict-card">
-            <div class="verdict-card-head">
-              <span class="verdict-card-name">{{ cfg.display_name if cfg else combo_key }}</span>
-              <span class="badge badge-{{ 'match' if verdict.label == pair.ground_truth else 'mismatch' }}">
-                {{ verdict.label }}
-              </span>
-            </div>
-            <div class="verdict-citation">“{{ verdict.cited_criterion }}”</div>
-            <div class="verdict-rationale">{{ verdict.rationale }}</div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
+    <div class="section-head" style="margin-top: 32px;">
+      <h2>Segment by outcome</h2>
+      <div class="section-note">Click a segment to filter the case list below. Counts update when you change the model above.</div>
     </div>
-    {% endfor %}
+    <div class="segment-grid" id="segment-grid"></div>
+
+    <div class="case-list-head">
+      <h3 id="case-list-title" style="margin:0;"></h3>
+      <span class="section-note" id="case-list-count"></span>
+    </div>
+    <div id="case-list"></div>
+
   </div>
 </section>
 
+<script id="explorer-data" type="application/json">{{ pairs | tojson }}</script>
+<script id="models-data" type="application/json">{{ models | tojson }}</script>
 <script src="{{ asset_prefix }}explore.js"></script>
 {% endblock %}

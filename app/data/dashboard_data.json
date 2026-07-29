@@ -363,7 +363,8 @@
           "cited_criterion": "\"Bronchiectasis (confirmed by CT scan)\"",
           "rationale": "The patient's clinical presentation (recurrent pneumonia, chronic productive cough, clubbing, bilateral absence of vas deferens, azoospermia) strongly suggests Cystic Fibrosis with bronchiectasis, but no CT scan confirming bronchiectasis is mentioned in the vignette, so this required diagnostic confirmation cannot be verified. Additionally, it is unclear whether the patient is in a stable state at least 4 weeks after any exacerbation treatment, which is required for enrollment."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 31,
@@ -388,7 +389,8 @@
           "cited_criterion": "Exclusion: \"With a current history of sleep disorders (e.g., ... narcolepsy ...) other than primary insomnia\"",
           "rationale": "The patient's presentation (excessive daytime sleepiness with refreshing naps, hypnagogic hallucinations, cataplexy-like episodes, short REM latency on MSLT) is classic for narcolepsy with cataplexy, which is explicitly an exclusion criterion for this trial and also does not meet the healthy subject or primary insomnia inclusion criteria."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 39,
@@ -413,7 +415,13 @@
           "cited_criterion": "\"Patients diagnosed with primary osteoporosis; Patients who have vertebral fractures at the time of screening\"",
           "rationale": "The patient has T-score below -2.5 confirming primary osteoporosis (no secondary cause noted such as medication use or other disease) and has a T10 vertebral compression fracture on imaging, meeting both inclusion criteria; no evidence of secondary osteoporosis or uncontrolled comorbidities that would exclude her."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 14,
@@ -438,7 +446,8 @@
           "cited_criterion": "Exclusion criteria: \"Chrystal proven gout in history\" and \"Patient is on uric acid lowering therapy (Allopurinol, Benzbromaron, Febuxostat)\"",
           "rationale": "The patient has a prior diagnosis of gouty arthritis with crystal-proven attacks and is currently on Allopurinol, both of which are explicit exclusion criteria for this trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 9,
@@ -463,7 +472,8 @@
           "cited_criterion": "\"Patients with a current, at the time of evaluation, and/or history of Zenker's diverticulum\" (exclusion criterion)",
           "rationale": "The barium swallow findings (outpouching at the pharyngoesophageal junction, halitosis, choking/dysphagia) are classic for Zenker's diverticulum, which is an explicit exclusion criterion for this trial. Additionally, the patient does not have feeding-tube dependent dysphagia >12 months, which is a required inclusion criterion."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 45,
@@ -488,7 +498,8 @@
           "cited_criterion": "\"Down syndrome children, Age between 0 and 3 years\"",
           "rationale": "The infant is 15 weeks old (within 0-3 years) and has confirmed trisomy 21 (Down syndrome), meeting the inclusion criteria. He is otherwise healthy with no other physical or functional impairment that would limit evaluation, so no exclusion criteria apply."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 12,
@@ -513,7 +524,8 @@
           "cited_criterion": "Asbestosis (diffuse lung scarring) and Benign pleural disease (bilateral pleural thickening)",
           "rationale": "Patient has documented chronic asbestos exposure with biopsy-proven pulmonary fibrosis containing asbestos bodies (asbestosis) and CT evidence of bilateral pleural thickening with effusion, satisfying inclusion criteria. No exclusion criteria (malignancy, chemo/radiation, allergy, bile obstruction, pregnancy, psychiatric issues) are mentioned or implied in the vignette."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 3,
@@ -538,7 +550,8 @@
           "cited_criterion": "\"No C282Y mutation within the HFE gene\" and \"Normal values for routine biological tests: serum iron, transferrin saturation, ferritin\"",
           "rationale": "This trial requires healthy volunteers with no C282Y mutation and normal iron studies; the patient is homozygous for C282Y with elevated transferrin saturation (55%) and ferritin (550 \u03bcg/L), consistent with hemochromatosis, directly violating inclusion criteria."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 46,
@@ -563,7 +576,8 @@
           "cited_criterion": "\"Patient is admitted to hospital; Primary reason for hospital admission is clinical suspicion of a new episode of ARI\"",
           "rationale": "The vignette describes an outpatient visit with normal vital signs and no mention of hospital admission, whereas the trial requires the patient to be hospitalized for the ARI episode."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 25,
@@ -588,7 +602,8 @@
           "cited_criterion": "\"Subject's health status: individual is considered to be healthy (hypertension and hypotension is permissible. Other stable diseases at the time of testing are also permissible)\" and \"Subject is capable of undergoing controlled hypoxaemia... with minimal medical risk\"",
           "rationale": "The patient has obesity (BMI 37), diabetes, and hyperlipidemia, which are stable comorbidities that may be permissible, but the vignette does not provide information about her ability to tolerate controlled hypoxaemia testing or any cardiopulmonary status that would determine medical risk, which is a decisive criterion for this trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 35,
@@ -613,7 +628,8 @@
           "cited_criterion": "\"Experiencing dysmenorrhea symptoms that are effects of or thought to be effects of (at least in part) secondary causes of dysmenorrhea, such as uterine fibroids, endometriosis, and/or currently symptomatic ovarian cysts\" combined with age 18-40 requirement",
           "rationale": "The patient's dysmenorrhea is due to adenomyosis, a secondary cause of dysmenorrhea, which is an explicit exclusion criterion; additionally she is 43 years old, outside the trial's inclusion age range of 18-40."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 4,
@@ -638,7 +654,13 @@
           "cited_criterion": "\"Hard tissue enlargement of at least two of 8 selected joints\" and \"Deformity of at least one of 10 selected joints\" plus requirement to be confirmed by experts' committee, French spoken and read",
           "rationale": "The vignette confirms DIP joint nodules and hand OA diagnosis, meeting age (<70) and gender criteria, but does not specify the exact number/location of joints involved (specifically whether 2nd/3rd DIP and PIP are affected as required by ACR erosive hand OA criteria), presence of deformity, or whether she meets language requirement (French) and lacks confirmation by an expert committee, so full ACR criteria fulfillment cannot be verified from the given information."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 25,
@@ -663,7 +685,8 @@
           "cited_criterion": "Inclusion: \"Between 20 aged and 45 aged in healthy male and female\" and \"Body Mass Index more than 18.5 and under 25\"",
           "rationale": "This is a healthy volunteer pharmacokinetic study requiring age 20-45 and BMI 18.5-25; the patient is 50 years old with BMI 37 and has diabetes, obesity, and an active ear pathology (cholesteatoma), disqualifying her from this healthy subject study."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 22,
@@ -688,7 +711,8 @@
           "cited_criterion": "Inclusion criteria requires \"Couple at risk... for one of the following diseases\" with prenatal diagnosis done during pregnancy where maternal blood was collected, and couple molecular diagnosis results must be available.",
           "rationale": "This trial is for prenatal non-invasive testing (NIPD on cffDNA) targeting couples at risk during pregnancy, not for an already-born 15-year-old boy diagnosed with fragile X syndrome. The patient is not a couple undergoing prenatal diagnosis, so he does not meet the fundamental inclusion criteria of this study."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 11,
@@ -713,7 +737,13 @@
           "cited_criterion": "Inclusion requires patient diagnosed with diabetes or hypertension, and clinical stage Ia or Ib",
           "rationale": "The patient has no known medical problems (no diabetes or hypertension) and there is no staging information confirming early stage Ia/Ib disease, both of which are required inclusion criteria for this trial."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 4,
@@ -738,7 +768,13 @@
           "cited_criterion": "\"Patients who received NSAIDs/COX-2 inhibitor for the treatment of arthritis of the knee for at least 5 days a week during 4 weeks prior to screening\" and \"pain VAS\" score requirements",
           "rationale": "The patient meets age, knee OA clinical/radiographic criteria (morning stiffness <30 min, crepitus, osteophytes on x-ray), but the vignette does not report her NSAID use frequency over the prior 4 weeks (she only tried Tylenol) nor her pain VAS score, both of which are required inclusion criteria that cannot be verified from the given information. Additionally, she also has DIP nodules suggesting hand OA, but this does not exclude her since the exclusion is for other types of arthritis, not other joints affected by OA; however the missing NSAID use history and VAS score make definitive eligibility undetermined."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 4,
@@ -763,7 +799,13 @@
           "cited_criterion": "Inclusion: at least two of criteria 2-6 (K/L grade \u2265II, morning stiffness <30 min, crepitus, bony tenderness, palpable bony enlargement, no palpable warmth); Exclusion: presence of knee joint effusion, history of knee injury/surgery, knee injection within 3 months, inflammatory arthritis, anticoagulants, balance/gait disturbance, diabetes mellitus.",
           "rationale": "The patient meets several ACR knee OA criteria (morning stiffness <30 min, crepitus/'bone friction', likely bony enlargement given DIP nodules and X-ray osteophytes), satisfying inclusion. However, the vignette does not mention knee joint effusion status, history of knee injury/surgery/injections, anticoagulant use, balance/gait status, or diabetes mellitus, all of which are exclusion criteria that cannot be confirmed absent or present from the given information."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 44,
@@ -788,7 +830,13 @@
           "cited_criterion": "\"Patients with typical reflux symptoms (heartburn and/or acid regurgitation) at least 3 times per week in recent 4 months.\"",
           "rationale": "The patient has heartburn/acid reflux symptoms consistent with GERD and a hiatal hernia found on imaging, but the vignette does not specify the frequency/duration of symptoms (at least 3x/week for 4 months) nor whether he has had an esophagogastroscopy with findings on erosive esophagitis, making it impossible to fully confirm inclusion/exclusion criteria such as symptom frequency and endoscopic findings."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 15,
@@ -813,7 +861,13 @@
           "cited_criterion": "\"PEF or FVC \u226480% and >25% of predicted value based on most recent assessment\"",
           "rationale": "The vignette confirms DMD diagnosis with absent dystrophin and the patient is 8 years old, meeting age and diagnostic criteria. However, there is no information provided about pulmonary function tests (PEF or FVC), which is a required decisive criterion for enrollment, so eligibility cannot be determined."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 36,
@@ -838,7 +892,8 @@
           "cited_criterion": "\"A probable or definite diagnosis of unilateral or bilateral Meniere's disease as defined by the 2015 edition of the American Academy of Otolaryngology-Head and Neck Surgery (Goebel 2016)\"",
           "rationale": "Patient presents with episodic vertigo with spontaneous resolution, tinnitus, unilateral sensorineural hearing loss (left ear), consistent with probable/definite unilateral M\u00e9ni\u00e8re's disease. She is an adult over 18 with no stated unwillingness to consent or complete questionnaires, meeting inclusion criteria without triggering exclusions."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 30,
@@ -863,7 +918,13 @@
           "cited_criterion": "Tender swelling in the popliteal fossa and calf worsening with knee movement, consistent with a popliteal (Baker's) cyst with possible rupture/DVT - this represents an acute, clinically significant abnormal finding that could interfere with safe study participation, and is not simply typical knee OA presentation described in the inclusion criteria.",
           "rationale": "The patient's presentation of a growing knee effusion with a tender popliteal/calf swelling suggests a Baker's cyst (possibly ruptured) or thrombophlebitis, which is a clinically significant abnormal finding beyond typical osteoarthritis symptoms. This would trigger the exclusion criterion for \"clinical or biochemical abnormal finding...considered to be clinically significant or might make safe participation in the study more difficult,\" and the diagnostic picture does not clearly fit the required \"symptomatic primary osteoarthritis of the knee\" inclusion criterion without a confounding acute complication."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 10,
@@ -888,7 +949,13 @@
           "cited_criterion": "\"Have a body mass index between 19.0 and 30.0 kg/m\u00b2, weight less than 125.0 kg... Must be in good health... calculated creatinine clearance of greater than 70 mL/min\"",
           "rationale": "This trial is for healthy volunteers with numerous specific inclusion/exclusion criteria (BMI, creatinine clearance, ECG findings, blood pressure, alcohol use, MRI compatibility, etc.) that are not addressed in the patient vignette, which focuses on a wrist mass (likely ganglion cyst) unrelated to this study. The vignette lacks the necessary health screening data to determine eligibility for this unrelated pharmacokinetic study."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 44,
@@ -913,7 +980,13 @@
           "cited_criterion": "Inclusion: \"chronic cough consistent with bronchoreactivity, Gastroesophageal reflux\"",
           "rationale": "The patient has heartburn/acid reflux and a hiatal hernia, but there is no mention of chronic cough or bronchoreactive symptoms, which is required for inclusion; the vignette does not provide enough information about respiratory symptoms to determine eligibility."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 4,
@@ -938,7 +1011,13 @@
           "cited_criterion": "\"Radiographic OA of the study knee of grade 2 or 3 (K-L scale)\" and \"Medial compartment OA\" and \"Ambulatory knee pain >30mm WOMAC\"",
           "rationale": "The vignette confirms knee OA with joint space narrowing, sclerosis, and osteophytes, consistent with OA, but lacks specifics on Kellgren-Lawrence grade, whether the OA is medial vs lateral compartment, quantitative pain severity (WOMAC score), BMI, ability to walk 10 minutes, and absence of foot disease or hip/ankle pain - all needed to confirm eligibility per this trial's detailed criteria."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 47,
@@ -963,7 +1042,8 @@
           "cited_criterion": "\"Have fewer than 3 inflammatory lesions on the face at Screening\" and \"moderate to severe facial erythema according to both CEA and PSA (erythema score of 3 or more)\"",
           "rationale": "The vignette describes papules and pustules (inflammatory lesions) present but does not specify the exact number, nor does it provide CEA/PSA erythema scores, both of which are decisive numeric thresholds required for inclusion/exclusion determination."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 2,
@@ -988,7 +1068,8 @@
           "cited_criterion": "Exclusion: \"Currently pregnant\"",
           "rationale": "This patient has a positive and rising serum \u03b2-hCG (1800\u21922100 mIU/mL), indicating a pregnancy (likely ectopic given no intrauterine gestational sac), which meets the exclusion criterion for current pregnancy in a trial for infertility treatment."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 44,
@@ -1013,7 +1094,8 @@
           "cited_criterion": "\"Patients who had been previously diagnosed as erosive GERD (i.e. grade A~D according to the modified Los-Angeles Classification\" and \"nighttime heartburn... graded as moderate or severe on \u22653 nights... PSQI score >5\"",
           "rationale": "The vignette describes a hiatal hernia found on barium swallow but does not mention endoscopic findings confirming erosive GERD grading, nighttime symptom severity, sleep disturbance history, or PSQI score, all of which are required inclusion criteria that cannot be verified from the given information."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 21,
@@ -1038,7 +1120,13 @@
           "cited_criterion": "\"Subject is diagnosed with sporadic or familial ALS within the past 48 months\" and \"Subject has an upright FVC \u226565% of predicted value\"",
           "rationale": "The vignette describes a 47-year-old man with ALS on riluzole with progressive limb weakness, hyperreflexia, and ataxia, but does not specify the time since diagnosis (needed to confirm within 48 months), his FVC value, or details on cardiac/renal/hepatic labs, MRI findings, or other exclusion criteria such as prior stem cell therapy or spine surgery. Without this information, key inclusion/exclusion criteria cannot be verified."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 2,
@@ -1063,7 +1151,8 @@
           "cited_criterion": "Inclusion: positive serum beta-hCG, EGA less than 20 weeks, complaint of vaginal bleeding",
           "rationale": "Patient has a positive beta-hCG (1800-2100 mIU/mL), presents with vaginal spotting, and her LMP was 10 weeks ago (EGA <20 weeks), meeting inclusion criteria. She has no documented intrauterine pregnancy (no gestational sac seen), stable vital signs, and no mention of peritoneal findings, open cervix, or being a prisoner, so no exclusion criteria are triggered."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 11,
@@ -1088,7 +1177,13 @@
           "cited_criterion": "\"Metastatic or locally advanced gastric cancer... Adequate blood and biochemistry parameters\"",
           "rationale": "The vignette confirms diffuse-type gastric adenocarcinoma but does not specify whether the disease is locally advanced or metastatic (staging is not provided), nor are labs, cardiac status, or other exclusion criteria (e.g., prior malignancy, brain metastases) addressed, making definitive eligibility determination impossible from the given information."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 48,
@@ -1113,7 +1208,8 @@
           "cited_criterion": "\"The study is especially designed for a specific female patient. The patient is 31 years old at the moment.\"",
           "rationale": "This N-of-1 trial is designed exclusively for one specific 31-year-old female patient with symmetric lipomatosis associated with neuropathy; the current patient is a 20-year-old male with hemophilia A and an unrelated lipoma, so he cannot be the subject of this individualized study."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 50,
@@ -1138,7 +1234,13 @@
           "cited_criterion": "MMSE score 20-30, MoCA <26, CDR global 0.5-1, positive CSF AD biomarker signature",
           "rationale": "The vignette describes a patient with progressive memory loss, functional impairment (needing help with bills, getting lost), and MRI showing cortical/hippocampal atrophy consistent with AD diagnosed by NIA-AA criteria, but does not provide specific MMSE/MoCA/CDR scores or CSF biomarker status required to confirm he meets the mild AD/MCI severity and biomarker inclusion criteria. Additionally, the severity described (needing help with routine activities, getting lost, being brought in by wife) suggests possibly more than \"mild\" AD, which cannot be confirmed without staging data."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 30,
@@ -1163,7 +1265,8 @@
           "cited_criterion": "Inclusion: aged 60 years or above",
           "rationale": "The patient is 47 years old, which fails the trial's minimum age requirement of 60 years or above, making her ineligible regardless of other factors."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 23,
@@ -1188,7 +1291,8 @@
           "cited_criterion": "Inclusion: Subjects diagnosed with Sjogren's Syndrome",
           "rationale": "The patient has confirmed Sjogren's disease with no other rheumatologic disease, satisfying the sole inclusion criterion. There is no mention of sarcoidosis, hepatitis B/C, HIV, or cancer within 5 years, so none of the exclusion criteria are triggered."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 1,
@@ -1213,7 +1317,13 @@
           "cited_criterion": "Successful completion of ZA-203",
           "rationale": "This trial requires prior completion of a preceding study (ZA-203) as the primary inclusion criterion, and the vignette gives no information about the patient having participated in or completed ZA-203, making eligibility undeterminable."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 22,
@@ -1238,7 +1348,8 @@
           "cited_criterion": "\"Has a diagnosis of FXS with a confirmed FMR1 full mutation (\u2265200 CGG repeats)\"",
           "rationale": "The patient is male, 15 years old (within 13-22 range), and has cytogenetic findings consistent with fragile X syndrome, but the vignette does not specify the exact number of CGG repeats (\u2265200 required for full mutation confirmation), so this key inclusion criterion cannot be definitively verified."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 26,
@@ -1263,7 +1374,8 @@
           "cited_criterion": "\"Is using corticosteroids\" and \"has a history of thyroid or other autoimmune disease\" (exclusion criteria)",
           "rationale": "The patient is starting glucocorticoid replacement therapy and has a documented history of Hashimoto disease (autoimmune thyroid disease), both of which are explicit exclusion criteria for this trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 44,
@@ -1288,7 +1400,8 @@
           "cited_criterion": "\"A man or woman who has been made diagnosis as LA grade0(Zero) measured through the endoscopy... there is no observed mucosal break\" and exclusion \"Who has ERD\" - patient has a hiatal hernia with 1/3 stomach herniation, indicating erosive/anatomic disease rather than NERD (LA grade 0) status.",
           "rationale": "The trial requires NERD diagnosis with LA grade 0 (no mucosal break) on endoscopy, and excludes patients with ERD. This patient has a significant hiatal hernia (1/3 stomach herniation through esophageal hiatus) visible on imaging, which is a structural abnormality associated with reflux disease severity and would not meet the NERD/LA grade 0 criteria typical of this trial's target population."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 48,
@@ -1313,7 +1426,13 @@
           "cited_criterion": "\"no smoker\" (inclusion) and \"Infectious episode in course\" / \"Surgery the month before sampling\" (exclusion)",
           "rationale": "The patient meets age (20) and male criteria, and family history of hemophilia is in a maternal uncle (not parents/siblings) so does not trigger the familial hemorrhagic disease exclusion. However, smoking status is not mentioned, and it's unclear if he has had surgery within the past month (he had a tooth extraction, and plans lipoma removal but timing is unspecified), so exclusion criteria cannot be fully evaluated."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 2,
@@ -1338,7 +1457,8 @@
           "cited_criterion": "\"Have undergone COS as part of an ART treatment... Scheduled to undergo FET with a standard HRT regimen\" and diagnosis suggests ectopic pregnancy, not IVF/FET candidate",
           "rationale": "This patient presents with a suspected ectopic pregnancy (rising \u03b2-hCG with no intrauterine gestational sac) following presumed natural conception with multiple sexual partners and inconsistent contraceptive use, with no mention of IVF/ICSI or frozen embryo transfer treatment, which is a core requirement for this fertility trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 21,
@@ -1363,7 +1483,13 @@
           "cited_criterion": "\"having had a muscle biopsy if diagnosed with a neuromuscular disease\" and \"willingness to provide a skin biopsy for research only\"",
           "rationale": "The patient clearly has a neuromuscular disease (ALS) diagnosis, satisfying the general inclusion criterion, but the vignette does not state whether he has had a muscle biopsy or is willing to provide a skin biopsy for research, which are specific requirements for enrollment. Without this information, eligibility cannot be fully determined."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 16,
@@ -1388,7 +1514,8 @@
           "cited_criterion": "Exclusion: \"Obvious other organ involvement with possibility to confirm granuloma with minimally invasive diagnostic procedure (Skin biopsy, superficial lymph nodes, Lofgren's Syndrome)\"",
           "rationale": "This patient has skin nodules (erythema nodosum-like lesions) that have already been biopsied and shown noncaseating granulomas, representing an accessible minimally invasive diagnostic site (skin biopsy), which is explicitly excluded from this trial that focuses on bronchoscopic/EBUS tissue sampling for mediastinal/hilar lymphadenopathy."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 46,
@@ -1413,7 +1540,13 @@
           "cited_criterion": "\"persistence of at least one symptom present in the first 3 weeks of a COVID-19, more than 8 weeks away from the first symptoms of COVID-19. OR late onset of at least one new symptom a minimum of 3 weeks and a maximum of 6 months after the first symptoms\"",
           "rationale": "The patient is only 3 days into acute COVID-19 infection with active symptoms; the trial requires either persistence of symptoms beyond 8 weeks from onset or late-onset new symptoms 3 weeks to 6 months after first symptoms. This patient has not yet reached these time windows, so he does not meet the required symptom timing criterion for a study focused on late/persistent post-COVID clinical events."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 44,
@@ -1438,7 +1571,8 @@
           "cited_criterion": "\"Objective documentation of pathological acid-reflux by either a) increased intraesophageal acid exposure on prolonged ambulatory esophageal pH monitoring... b) or the presence of erosive esophagitis (LA Grade A or B) on endoscopy\" and \"Hiatal hernia axial length is no larger than 2 cm\"",
           "rationale": "The vignette confirms GERD symptoms and a hiatal hernia (about 1/3 of stomach herniating), but does not provide the specific hiatal hernia axial length measurement, endoscopic or pH monitoring findings, esophageal manometry results, or prior PPI response/duration\u2014all of which are required to determine eligibility per the inclusion and exclusion criteria. Without these specific measurements (hernia size \u22642cm, absence of severe motility disorder, objective GERD documentation), eligibility cannot be determined."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 11,
@@ -1463,7 +1597,13 @@
           "cited_criterion": "\"The patient has experienced disease progression during treatment or within 4 months after the last dose of first-line therapy for metastatic disease\" (second-line setting requirement)",
           "rationale": "This trial requires patients to have metastatic/unresectable disease and to have already progressed on first-line chemotherapy (second-line setting). The vignette describes a newly diagnosed gastric adenocarcinoma without any information on staging (metastatic vs localized), prior chemotherapy, performance status, or labs, so eligibility for this second-line trial cannot be determined."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 21,
@@ -1488,7 +1628,13 @@
           "cited_criterion": "\"At least 5 years from onset of symptoms\" and \"At least 5 of 10 testable upper extremity muscle groups... of MRC grade 4 or better\"",
           "rationale": "The vignette indicates symptom onset roughly 1 year ago (progressive weakness over the last year), which appears to fail the \"at least 5 years from onset\" requirement, but exact onset timing and detailed MRC grading of upper extremity muscle groups are not explicitly provided, making definitive determination on these specific numeric criteria uncertain from the vignette alone."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 22,
@@ -1513,7 +1659,8 @@
           "cited_criterion": "Male between the ages of 16-50 years old at the time of consent",
           "rationale": "The patient is 15 years old, which falls below the trial's minimum age requirement of 16 years, making him ineligible regardless of other criteria."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 12,
@@ -1538,7 +1685,13 @@
           "cited_criterion": "Diagnosis of IPF according to international guidelines",
           "rationale": "The patient's pulmonary fibrosis is due to asbestos exposure (asbestosis), evidenced by asbestos bodies on lung specimen, not idiopathic pulmonary fibrosis (IPF), which by definition has no identifiable cause. Therefore he does not meet the inclusion criterion requiring a diagnosis of IPF."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 44,
@@ -1563,7 +1716,13 @@
           "cited_criterion": "\"Episode of heartburn for 3 months or more during prior to randomization visit\" and \"Grade N, M by EGD test\"",
           "rationale": "The vignette confirms heartburn but does not specify its duration (whether \u22653 months) or the results of an EGD grading (Grade N or M), both of which are required inclusion criteria. Additionally, the presence of a hiatal hernia may constitute an \"active medical history of stomach, esophagus area\" exclusion, but this is not explicitly clarified in the trial's exclusion definition, making the eligibility determination uncertain based on the given information."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 39,
@@ -1588,7 +1747,8 @@
           "cited_criterion": "Exclusion: \"History of vertebral fracture...or recent bone fracture within 6 months prior to screening\" and Inclusion: \"Currently taking alendronate...exclusively for \u2265 1 year\"",
           "rationale": "The patient has a newly found compression fracture at T10 (vertebral fracture), which is an exclusion criterion, and there is no mention of prior alendronate use, failing the inclusion requirement of being on alendronate for \u22651 year."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 34,
@@ -1613,7 +1773,13 @@
           "cited_criterion": "\"Standard extracapsular method was used for surgery\" (inclusion) and no mention of prior joint infection/surgery (exclusion)",
           "rationale": "The patient has classic refractory tennis elbow (lateral epicondylitis) after months of conservative therapy including physical therapy, consistent with the diagnosis inclusion. However, the trial requires that the patient underwent the standard extracapsular arthroscopic surgery, and there is no information indicating whether this patient underwent or is planned to undergo this specific surgical procedure, making it impossible to confirm eligibility based on the retrospective surgical cohort criterion."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 2,
@@ -1638,7 +1804,8 @@
           "cited_criterion": "Exclusion criterion: \"are pregnant (per urine pregnancy test at screening)\"",
           "rationale": "The patient presents with an abnormally rising \u03b2-hCG (suggestive of ectopic pregnancy) consistent with a pregnancy state, which meets the exclusion criterion for pregnancy; additionally she has inconsistent contraceptive use, failing the inclusion requirement for consistent effective birth control for the past 4 months."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 24,
@@ -1663,7 +1830,8 @@
           "cited_criterion": "\"Individuals ages 12-90 years with confirmed diagnosis of HPS\"",
           "rationale": "The patient is a 4-year-old with oculocutaneous albinism, not confirmed Hermansky-Pudlak Syndrome, and he does not meet the age requirement of 12-90 years."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 9,
@@ -1688,7 +1856,13 @@
           "cited_criterion": "\"Ability to undergo esophagogastroduodenoscopy and biopsies; No significant cardiopulmonary disease, or other contraindication to EGD\"",
           "rationale": "The patient presents with dysphagia, meeting the age and presenting symptom criteria, and her findings (Zenker's diverticulum) do not clearly meet exclusion criteria like Boerhaave's syndrome or esophageal varices. However, there is no information provided about her ability to safely undergo EGD/biopsies, her cardiopulmonary status, bleeding disorders, INR levels, or ability to provide informed consent, which are necessary to determine full eligibility."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 42,
@@ -1713,7 +1887,8 @@
           "cited_criterion": "Inclusion: \"High school girls\"",
           "rationale": "The patient is a 9-year-old girl, not a high school student, so she does not meet the age/grade level inclusion criterion for this adolescent obesity prevention trial targeting high school girls."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 48,
@@ -1738,7 +1913,13 @@
           "cited_criterion": "Exclusion: \"Moderate/Mild for Hemophilia A patients without FVIII inhibitors\"",
           "rationale": "The patient's FVIII activity is 40%, indicating mild Hemophilia A, and there is no mention of FVIII inhibitors. This meets the exclusion criterion for moderate/mild Hemophilia A without inhibitors, making him ineligible for this trial."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 2,
@@ -1763,7 +1944,8 @@
           "cited_criterion": "Known or suspected pregnancy (exclusion criterion)",
           "rationale": "The patient has a positive and rising \u03b2-hCG (1800\u21922100 mIU/mL) with no intrauterine gestational sac, consistent with a suspected (likely ectopic) pregnancy, which is an explicit exclusion criterion. She also is not currently using reliable contraception, failing the inclusion requirement of not being at risk for pregnancy."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 35,
@@ -1788,7 +1970,8 @@
           "cited_criterion": "\"Congenital or acquired uterine anomaly\" / \"Any distortion of the uterine cavity...likely to cause problems during insertion, retention or removal of the LCS\"",
           "rationale": "The patient has adenomyosis with a uniformly enlarged, tender uterus and is already being planned for hysterectomy, indicating an acquired uterine abnormality that would interfere with LCS insertion and is inconsistent with the trial's requirement of suitable uterine conditions for device placement."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 6,
@@ -1813,7 +1996,8 @@
           "cited_criterion": "\"Patients must have adequate pulmonary reserve evidenced by FEV1 and DLCO greater than the 30% predicted, and pCO2 less than 50 mm Hg and pO2 greater than 60 mm Hg on room air ABG\" and other labs/performance status criteria",
           "rationale": "The patient has a biopsy consistent with pleural mesothelioma (epithelioid cells with long microvilli), which matches the disease inclusion criterion. However, the vignette lacks critical data required to determine eligibility such as ECOG performance status, pulmonary function tests (FEV1, DLCO, ABG), cardiac status, blood counts, renal/hepatic function, and staging/resectability, all of which are decisive inclusion/exclusion criteria for this trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 38,
@@ -1838,7 +2022,13 @@
           "cited_criterion": "Patients with clinically diagnosed ET who have had placement of VIM DBS...VIM DBS placement no less than three months from entry into study",
           "rationale": "This trial requires patients to have already undergone VIM DBS placement at least 3 months prior to enrollment. The patient in the vignette is newly diagnosed with essential tremor and has not undergone any DBS surgery, so he does not meet this fundamental inclusion criterion."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 36,
@@ -1863,7 +2053,13 @@
           "cited_criterion": "\"will have a mild to moderately-severe hearing loss in both of the ears\"",
           "rationale": "The patient has sensorineural hearing loss only in the left ear, with normal hearing in the right ear, whereas the trial requires bilateral hearing loss in both ears. This unilateral presentation fails the inclusion criterion for the study."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 1,
@@ -1888,7 +2084,8 @@
           "cited_criterion": "\"documented biochemical failure (total testosterone <300 ng/dL) when treated with the highest dose of a topical testosterone gel tolerated by the participant\"",
           "rationale": "This trial is specifically for hypogonadal men with suboptimal response to prior topical testosterone gel therapy. This patient presents with Kallmann syndrome (anosmia, low GnRH, delayed puberty, small testes) with no history of any prior testosterone gel treatment or documented biochemical failure on such therapy, so he does not meet the core inclusion criterion requiring prior topical testosterone gel treatment failure."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 2,
@@ -1913,7 +2110,8 @@
           "cited_criterion": "Exclusion criteria: suspected or proven ectopic pregnancy; Inclusion requires intrauterine singleton pregnancy confirmed by pelvic ultrasound",
           "rationale": "The patient has a positive and rising (though abnormally slow-rising) \u03b2-hCG with no gestational sac seen on ultrasound despite a level well above the threshold where an intrauterine pregnancy should be visible, strongly suggesting an ectopic pregnancy rather than a confirmed intrauterine pregnancy. This directly triggers the exclusion criterion for suspected ectopic pregnancy and fails the inclusion requirement of an ultrasound-confirmed intrauterine singleton pregnancy."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 11,
@@ -1938,7 +2136,13 @@
           "cited_criterion": "\"Histologically verified, untreated, metastatic or locally advanced inoperable adenocarcinoma or signet ring cell carcinoma of the stomach\" and \"At least one radiographically documented measurable lesion according to RECIST1.1\"",
           "rationale": "The patient has a histologically confirmed signet ring cell gastric adenocarcinoma, consistent with the histology requirement, but the vignette does not provide staging information (metastatic/locally advanced inoperable status), measurable lesion size per RECIST, ECOG performance status, or lab values (WBC, ANC, platelets, hemoglobin, liver/renal function) needed to confirm eligibility per the inclusion criteria."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 4,
@@ -1963,7 +2167,13 @@
           "cited_criterion": "\"Knee pain for at least 14 days per month for the last 3 months\" and \"Mean score of 4 or greater on the 24-hour average pain score from Visit 2 to Visit 3\"",
           "rationale": "The patient has knee OA with osteophytes, morning stiffness <30 min, and age >50, satisfying the OA definition criteria, and hand OA (Heberden's nodes) is explicitly allowed as a confounding condition. However, there is no information on frequency/duration of knee pain over the past 3 months, average pain severity score, NSAID use pattern, BMI, comorbid psychiatric history, lab values, or other exclusion criteria needed to determine full eligibility."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 7,
@@ -1988,7 +2198,8 @@
           "cited_criterion": "Age 0 to \u2264 12 months, at study entry (Day 1).",
           "rationale": "The trial only enrolls infants aged 0 to 12 months, but the patient is a 3-year-old girl, which exceeds the age eligibility window."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 30,
@@ -2013,7 +2224,13 @@
           "cited_criterion": "\"patients benefiting from joint fluid puncture for diagnostic purposes\" and \"acute arthritis defined by an evolution of less than 6 weeks\"",
           "rationale": "The vignette describes a knee effusion with popliteal/calf swelling consistent with a Baker's cyst, but does not specify the duration of symptoms (whether less than 6 weeks) nor whether a joint fluid puncture was performed for diagnostic purposes, both of which are required inclusion criteria that cannot be confirmed from the given information."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 35,
@@ -2038,7 +2255,13 @@
           "cited_criterion": "Inclusion: \"intact gastrointestinal tract, uterus and cervix\" and patient has painful menstrual cycles due to adenomyosis with tender enlarged uterus, and is a candidate for hysterectomy (implying she has not had it yet, but has chronic uterine/vulvar-type symptoms). Also relevant: \"Chronic or acute vulvar or vaginal symptoms (pain, irritation, spotting/bleeding, discharge, etc.)\" exclusion.",
           "rationale": "The patient has painful, symptomatic uterine disease (adenomyosis with tender, enlarged uterus) and is scheduled for hysterectomy, which triggers the exclusion for chronic vulvar/vaginal or uterine symptoms and would make her participation unsafe or complicate data interpretation per the investigator's judgment clause."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 2,
@@ -2063,7 +2286,8 @@
           "cited_criterion": "\"Currently pregnant or within two calendar months from the last pregnancy outcome\" and \"Chronic or acute vulvar or vaginal symptoms (pain, irritation, spotting/bleeding, discharge, etc.)\"",
           "rationale": "The patient has a rising \u03b2-hCG consistent with an ectopic/early pregnancy (likely ectopic given thin endometrium and no gestational sac) and presents with vaginal spotting, both of which are explicit exclusion criteria for this trial (current pregnancy and acute vaginal bleeding/spotting symptoms)."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 44,
@@ -2088,7 +2312,13 @@
           "cited_criterion": "\"History of daily PPIs use for > 6 months\" and \"GERD for > 1 year\"",
           "rationale": "The vignette does not mention how long the patient has had GERD symptoms, nor any history of PPI use for over 6 months, nor Hill grade classification, which are required inclusion criteria that cannot be assessed from the given information."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 25,
@@ -2113,7 +2343,13 @@
           "cited_criterion": "\"Undergo any type of surgeries under general anesthesia in UCI Medical Center\" (inclusion) and diabetes control status not specified (\"chronic poorly-controlled diabetes\" exclusion)",
           "rationale": "The vignette describes a patient with cholesteatoma who likely requires surgery, but there is no information confirming she is undergoing surgery under general anesthesia at UCI Medical Center, nor whether her diabetes is well or poorly controlled, both of which are decisive for this trial's inclusion/exclusion criteria."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 4,
@@ -2138,7 +2374,13 @@
           "cited_criterion": "\"primary osteoarthritis in the distal interphalangeal joint require surgical treatment\"",
           "rationale": "The patient has clinical and radiographic findings consistent with primary osteoarthritis (Heberden's nodes, joint space narrowing, sclerosis, osteophytes) affecting the DIP joints, but there is no mention of whether she requires or is being considered for surgical treatment, which is a decisive inclusion criterion. Additionally, no information is given about German language proficiency, legal competence, or pregnancy status."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 3,
@@ -2163,7 +2405,8 @@
           "cited_criterion": "Inclusion requires stable idiopathic pulmonary arterial hypertension with iron deficiency (serum iron <10 \u03bcmol/l, transferrin saturation <20% in males, ferritin <100 \u03bcg/l); patient has hemochromatosis with elevated transferrin saturation (55%) and ferritin (550 \u03bcg/L), and no mention of PAH.",
           "rationale": "The patient has hemochromatosis with iron overload (transferrin saturation 55%, ferritin 550 \u03bcg/L) rather than iron deficiency, and there is no diagnosis of idiopathic pulmonary arterial hypertension, both of which are required by the trial's inclusion criteria."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 11,
@@ -2188,7 +2431,13 @@
           "cited_criterion": "\"Patients are diagnosed as of gastric cancer by a preliminary endoscopy or biopsy sampling\" (Inclusion) - trial targets early gastric cancer amenable to endoscopic submucosal dissection",
           "rationale": "While the patient has biopsy-confirmed gastric adenocarcinoma (signet ring cell type) satisfying the basic diagnostic inclusion criterion, the vignette does not provide staging information (e.g., depth of invasion, lymph node involvement, or evidence of metastasis) needed to confirm this is early-stage gastric cancer appropriate for endoscopic submucosal dissection, which is the trial's clear context. Additionally, there is no information on cardiac/pulmonary status, pacemaker presence, or other malignancies to rule out exclusion criteria."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 30,
@@ -2213,7 +2462,13 @@
           "cited_criterion": "\"Patient has a concurrent medical or arthritic condition that could confound evaluation of the index joint\" and the presentation described (calf/popliteal swelling with knee effusion, suggestive of a Baker's cyst/possible DVT) represents a confounding condition",
           "rationale": "The patient's presentation (knee effusion with tender popliteal fossa and calf swelling that worsens with flexion/extension) is classic for a ruptured Baker's cyst, a concurrent condition that would confound evaluation of the index knee joint, triggering the exclusion criterion. Additionally, there is no confirmation of Kellgren-Lawrence grade 2-3 radiographic OA, 6+ months of pain, or WOMAC pain score, making several inclusion criteria unmet or unverifiable."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 39,
@@ -2238,7 +2493,8 @@
           "cited_criterion": "\"Should have at least 1 vertebral or non-vertebral prevalent fracture, and bone mineral density T-score should be less than -2.5\" and \"postmenopausal women (aged 55 to 85 years)\"",
           "rationale": "Patient is a 55-year-old woman (presumed postmenopausal at this age) with confirmed osteoporosis (T-score below -2.5) and a prevalent vertebral compression fracture at T10, meeting the key inclusion criteria. No history of liver/kidney disease, bone-affecting drugs, or alcohol/drug abuse is reported, and she is ambulatory with no other severe disabling conditions mentioned."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 44,
@@ -2263,7 +2519,13 @@
           "cited_criterion": "Erosive esophagitis on upper digestive endoscopy, based on Los Angeles classification",
           "rationale": "The vignette describes GERD symptoms and a hiatal hernia on barium swallow, but there is no upper endoscopy finding reported to confirm erosive esophagitis with Los Angeles classification, which is a required inclusion criterion."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 28,
@@ -2288,7 +2550,8 @@
           "cited_criterion": "Exclusion: Coagulation defects",
           "rationale": "The patient's presentation (low VWF activity, low FVIII:C, elevated PTT, family history of menorrhagia) is consistent with von Willebrand disease, a coagulation defect, which is explicitly excluded from this platelet aggregation/thrombocytopathy study."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 47,
@@ -2313,7 +2576,8 @@
           "cited_criterion": "\"Have an Investigator Global Assessment of mild to moderate rosacea (IGA rating between 2 and 5...)\" and \"Access to a computer and the internet.\"",
           "rationale": "The patient has papules, pustules, erythema, and telangiectasias consistent with rosacea, but no IGA score is provided to confirm mild-to-moderate severity, and there is no information about her internet/computer access, which is required for this internet survey-based trial. Otherwise, she is not on contraindicated medications and uses an IUD for contraception, so exclusion criteria appear satisfied."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 22,
@@ -2338,7 +2602,8 @@
           "cited_criterion": "\"Male or female patients, 18 to 45 years of age.\"",
           "rationale": "The patient is 15 years old, which is below the trial's minimum age requirement of 18 years, making him ineligible regardless of his Fragile X diagnosis."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 5,
@@ -2363,7 +2628,13 @@
           "cited_criterion": "Inclusion: \"Adult patients \u226518 years of age who underwent thoracotomy for septal myectomy.\"",
           "rationale": "The patient has newly diagnosed HCM but there is no indication he has undergone septal myectomy surgery, which is a required inclusion criterion for this postoperative complications study."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 30,
@@ -2388,7 +2659,13 @@
           "cited_criterion": "\"Knee pain on most days of the previous month...Knee pain present for longer than 3 months\"",
           "rationale": "The patient has osteoarthritis with knee pain for 2 years and worsening symptoms with a popliteal cyst (Baker's cyst) presentation, but the vignette does not specify whether her knee pain occurs on most days of the previous month or quantify severity on WOMAC pain domains, so exact inclusion criteria cannot be confirmed. No exclusion criteria (e.g., joint replacement, autoimmune disease, dementia) are indicated."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 41,
@@ -2413,7 +2690,8 @@
           "cited_criterion": "\"Have a firm clinical diagnosis of GCA or PMR... Patients will be 50 years of age or over, unless both biopsy-proven and a clinically classical case of GCA.\"",
           "rationale": "The patient is 61 years old with a biopsy-confirmed diagnosis of GCA (multinuclear giant cells, elastic membrane fragmentation), elevated ESR, jaw claudication, amaurosis fugax, and PMR-like symptoms (hip/muscle aches), satisfying the firm clinical diagnosis and age requirement; no information suggests inability to consent."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 44,
@@ -2438,7 +2716,13 @@
           "cited_criterion": "\"Is greater than 5 cm hiatal hernia on Upper Gastrointestinal (UGI) series\"",
           "rationale": "The patient has a paraesophageal hernia with 1/3 of the stomach herniating and symptoms of heartburn, satisfying part of criterion A, but the vignette does not specify the hernia size in cm on UGI series, which is required (>5 cm) to determine eligibility."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 40,
@@ -2463,7 +2747,13 @@
           "cited_criterion": "\"Currently receiving frequent on-demand treatment with a VWF-containing product\" and age \u22655.5 years, VWD type classification",
           "rationale": "The patient's age (23) and clinical/lab picture (low VWF:RCo, low FVIII:C, abnormal ristocetin cofactor assay, response to DDAVP, family history) are consistent with von Willebrand disease, but the vignette does not specify her VWD subtype (1, 2A, 2B, 2M, or 3) nor whether she is currently receiving frequent on-demand treatment with a VWF-containing product, which are required inclusion criteria. Without this information, eligibility cannot be determined."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 42,
@@ -2488,7 +2778,8 @@
           "cited_criterion": "Exclusion: \"Syndromic short stature\"",
           "rationale": "The patient has Turner syndrome (45,XO karyotype with webbed neck, cubitus valgus, low-set ears, high arched palate), which is a form of syndromic short stature explicitly excluded from this trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 4,
@@ -2513,7 +2804,8 @@
           "cited_criterion": "\"Patients with age 45-65 years\"",
           "rationale": "The patient is 66 years old, which exceeds the trial's inclusion age range of 45-65 years, making her ineligible regardless of other criteria."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 2,
@@ -2538,7 +2830,8 @@
           "cited_criterion": "\"At third trimester of pregnancy\" and \"Singleton pregnancy\" - inclusion criteria require a viable third trimester pregnancy",
           "rationale": "This patient has an abnormally rising \u03b2-hCG with no intrauterine gestational sac seen, consistent with a suspected ectopic pregnancy rather than a viable third trimester singleton pregnancy required for this fetal ultrasound measurement trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 50,
@@ -2563,7 +2856,13 @@
           "cited_criterion": "\"Care for an individual with Alzheimer's Disease...Minimum age of 21 years old...Spend at least 8 hours/week caring for a person with dementia\"",
           "rationale": "This trial is intended for the caregiver (e.g., the wife), not the patient with Alzheimer's disease himself. The vignette describes the patient's condition but does not provide information about the wife's age, caregiving hours, internet/DVD access, or psychological state, which are the actual eligibility criteria for enrollment as the caregiver-participant."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 28,
@@ -2588,7 +2887,8 @@
           "cited_criterion": "Exclusion: \"Anyone under 18 yrs and anyone with a very specific, system based complaint.\"",
           "rationale": "The patient is 23 (meets age inclusion), but she presents with a very specific, system-based complaint (epistaxis with a clear bleeding disorder workup showing abnormal coagulation studies), rather than a generalized complaint, which triggers the exclusion criterion for specific system-based complaints."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 29,
@@ -2613,7 +2913,13 @@
           "cited_criterion": "\"Patients \u22655 years of age undergoing surgery at Mbale Regional Referral Hospital, who receive post-operative care...\"",
           "rationale": "This trial requires patients undergoing surgery with post-operative care at a specific hospital in Uganda; the vignette describes a patient in the emergency department being worked up for suspected Cauda Equina syndrome with no indication of surgery or post-operative status, so he does not meet the fundamental inclusion criterion."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 14,
@@ -2638,7 +2944,13 @@
           "cited_criterion": "\"Has at the Screening Visit SUA \u2265 7 mg/dL, with chronic refractory gout defined as having failed to normalize SUA...with xanthine oxidase inhibitors\"",
           "rationale": "The patient has a current diagnosis of gouty arthritis and is on allopurinol (a xanthine oxidase inhibitor), which could satisfy the history/diagnosis criterion, but the vignette does not provide his serum uric acid (SUA) level or confirm that his gout is refractory/inadequately controlled despite appropriate dosing, which is required for inclusion. Without this lab value and treatment response information, eligibility cannot be determined."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 44,
@@ -2663,7 +2975,8 @@
           "cited_criterion": "Inclusion: \"Patients referred for upper endoscopy for any reason including those with acid reflux...\" with no exclusion criteria (cancer, resection, varices, strictures, GI bleeding) met.",
           "rationale": "The patient presents with acid reflux symptoms and a hiatal hernia, fitting the inclusion criterion for endoscopy referral due to acid reflux. There is no mention of esophageal/gastric cancer, prior resection, varices, strictures, active GI bleeding, or inability to consent, so no exclusion criteria are triggered."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 15,
@@ -2688,7 +3001,13 @@
           "cited_criterion": "Exclusion: \"subjects with severely dilated myocardium. subjects with other associated diseases. individuals with inability to understand task instructions.\"",
           "rationale": "The patient meets the inclusion criterion (DMD diagnosis confirmed by absence of dystrophin protein on muscle biopsy), but the vignette does not provide information about cardiac status (e.g., presence or absence of severe dilated cardiomyopathy) or cognitive ability to understand task instructions, which are needed to rule out exclusion criteria."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 42,
@@ -2713,7 +3032,8 @@
           "cited_criterion": "\"All patients who receive easypod GH of age 1-14 years will be approached for consent to participate\" / \"Patients on growth hormone treatment but using other growth hormone devices\" excluded",
           "rationale": "The patient is a 9-year-old girl with Turner syndrome (45,XO karyotype), which fits the age range and diagnostic category accepted by the trial. However, the vignette does not state whether she is currently receiving growth hormone therapy via the easypod device (a requirement for inclusion), so eligibility cannot be determined with certainty."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 39,
@@ -2738,7 +3058,13 @@
           "cited_criterion": "\"seek primary care (GP, physiotherapist or chiropractor) new episode of back pain, no visit of primary care the preceding 6 months for back pain\"",
           "rationale": "The vignette does not specify whether this back pain is a new episode, whether she is seeking primary care specifically for this back pain, or whether she has had a prior primary care visit for back pain in the last 6 months. Additionally, there is no information about her location (Norway) or language ability, which are relevant to exclusion criteria."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 29,
@@ -2763,7 +3089,8 @@
           "cited_criterion": "\"patients with severe preoperative neurological affection (Cauda Equina Syndrome)\" are excluded",
           "rationale": "The patient is suspected of having Cauda Equina Syndrome (absent anal wink reflex, radicular back pain, constipation), which is an explicit exclusion criterion for this trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 10,
@@ -2788,7 +3115,8 @@
           "cited_criterion": "\"a FHT patient at one of the FHT sites selected and is 60 years or older\"",
           "rationale": "The patient is 19 years old, far below the required minimum age of 60, and does not have complex care needs with multiple chronic conditions, so she fails the core inclusion criteria."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 30,
@@ -2813,7 +3141,8 @@
           "cited_criterion": "Osteoarthritis of the knee requiring therapy with NSAIDs",
           "rationale": "The patient has osteoarthritis and has been using NSAIDs for two years, satisfying the sole inclusion criterion; there are no exclusion criteria listed."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 10,
@@ -2838,7 +3167,8 @@
           "cited_criterion": "Inclusion requires having completed protocol SSC-710 and received DCVax-001/poly ICLC/saline; also has two partners without stated mutual monogamy or confirmed HIV-uninfected status, and no prior trial participation mentioned.",
           "rationale": "The trial requires prior enrollment/completion of protocol SSC-710, which the patient has no documented history of; additionally, having two sexual partners without confirmation of mutual monogamy or HIV-negative status raises concern about meeting the \"low risk\" HIV behavioral criteria, though the primary disqualifying factor is the lack of prior SSC-710 participation required for enrollment."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 39,
@@ -2863,7 +3193,8 @@
           "cited_criterion": "aged 60 or more",
           "rationale": "The patient is 55 years old, which does not meet the inclusion criterion requiring patients to be aged 60 or older."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 35,
@@ -2888,7 +3219,13 @@
           "cited_criterion": "\"have abnormal uterine bleeding\" and \"can read and write in English\"",
           "rationale": "The patient has painful menstruation (dysmenorrhea) from adenomyosis, but there is no mention of abnormal uterine bleeding (e.g., heavy or irregular bleeding) which is a required inclusion criterion; her cycles are described as regular (28-day cycle, 5-day duration). Additionally, there is no information about her English literacy, another required criterion."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 35,
@@ -2913,7 +3250,8 @@
           "cited_criterion": "\"Women who have pain that is caused by a disorder in the woman's reproductive organs... adenomyosis\" (exclusion criterion)",
           "rationale": "The patient has a diagnosis of adenomyosis causing her menstrual pain, which is an explicit exclusion criterion. Additionally, she is 43 years old, exceeding the trial's age limit of 18-35 years."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 35,
@@ -2938,7 +3276,13 @@
           "cited_criterion": "Uterine size <12 weeks; no severe endometriosis; no more than 1st degree uterine descent; completion of entire procedure by laparoscopic approach up to colpotomy",
           "rationale": "The patient is a candidate for hysterectomy for adenomyosis with a benign, non-malignant condition and BMI of 23 (not obese, satisfying exclusion criteria), which supports eligibility. However, the vignette does not specify uterine size in weeks, degree of uterine descent, presence/absence of endometriosis, or whether laparoscopic approach will be used, all of which are required to confirm inclusion criteria."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 21,
@@ -2963,7 +3307,13 @@
           "cited_criterion": "Duration of the disease of less than 12 months; French social insurance affiliation",
           "rationale": "The patient's symptom onset (left arm weakness) began about a year ago and right arm weakness a few months later, making it unclear if total disease duration is under 12 months. Additionally, there is no information on French social insurance affiliation or absence of exclusion criteria such as anticoagulant use or contraindications to muscle biopsy/EMG, so eligibility cannot be fully determined."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 12,
@@ -2988,7 +3338,13 @@
           "cited_criterion": "\"any significant diseases that could contribute to dyspnea or exercise limitation\" (exclusion); also patient does not have diagnosis of mild COPD but rather asbestosis-related pulmonary fibrosis",
           "rationale": "The patient has asbestosis-related pulmonary fibrosis and pleural effusion, not a diagnosis of mild COPD as required by inclusion criteria, and his underlying asbestosis is a significant disease contributing to dyspnea, meeting an exclusion criterion."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 47,
@@ -3013,7 +3369,13 @@
           "cited_criterion": "\"Finnish speaking adults\" and \"Fitzpatrick skin phototype I-IV\"",
           "rationale": "The vignette does not specify whether the patient is Finnish speaking or her Fitzpatrick skin phototype, both of which are required inclusion criteria for this trial. Without this information, eligibility cannot be determined."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 30,
@@ -3038,7 +3400,13 @@
           "cited_criterion": "\"Who want to be involved voluntary work\" / \"Ability to adjust the training program\"",
           "rationale": "The patient has knee osteoarthritis and is within the 35-65 age range with no mention of prior knee surgery, satisfying several inclusion criteria. However, the vignette presents symptoms suggestive of a possible Baker's cyst/popliteal swelling requiring further workup, and there is no information about her willingness to participate voluntarily, mental capacity for assessment, or ability to adjust to a training program, which are required to determine eligibility."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 38,
@@ -3063,7 +3431,8 @@
           "cited_criterion": "Inclusion: \"Subject with disabling tremor of upper limb, Subject with essential tremor action and/or lesion\"",
           "rationale": "The patient has a confirmed diagnosis of essential tremor causing bilateral upper limb action tremor that interferes with daily activities (drinking, pouring), matching the inclusion criteria. He has no history of drug-induced tremor, exaggerated physiological tremor, or isolated resting tremor, so no exclusion criteria apply."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 32,
@@ -3088,7 +3457,8 @@
           "cited_criterion": "Inclusion: \"Patients with cough or shortness of breath\"",
           "rationale": "The patient has persistent cough with thick sputum and shortness of breath, satisfying the inclusion criterion. There is no mention of chest tubes, skin lesions, respiratory distress, or pregnancy (male patient), so no exclusion criteria are triggered."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 5,
@@ -3113,7 +3483,13 @@
           "cited_criterion": "Wall thickness \u2265 15 mm ... LVOT gradient > 30 mmHg at rest and/or > 50 mmHg at Valsalva's maneuver or exercise; NYHA \u2265 II",
           "rationale": "The vignette confirms asymmetric septal hypertrophy consistent with HOCM, but does not provide specific wall thickness measurement, LVOT gradient, or NYHA functional class, all of which are required to determine inclusion eligibility. Additionally, key exclusion criteria (e.g., blood pressure, heart rate, contraindications to beta-blockers, MRI/gadolinium, atrial fibrillation, trifascicular block) are not addressed in the vignette."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 6,
@@ -3138,7 +3514,13 @@
           "cited_criterion": "\"Subject is scheduled to undergo a staging pleuroscopy\" and \"Subject is a surgical candidate\"",
           "rationale": "The patient is a 61-year-old man (over 18) with findings consistent with malignant pleural mesothelioma, but the vignette does not state whether he is scheduled for a staging pleuroscopy or has been deemed a surgical candidate, which are required inclusion criteria."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 40,
@@ -3163,7 +3545,8 @@
           "cited_criterion": "Exclusion: \"Participants who are found to have or who have been diagnosed with a coagulopathy\"",
           "rationale": "The patient has laboratory and clinical findings consistent with von Willebrand disease (abnormal ristocetin cofactor assay, low VWF and FVIII:C, family history, mucocutaneous bleeding), which is a coagulopathy explicitly excluded by the trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 39,
@@ -3188,7 +3571,8 @@
           "cited_criterion": "Subjects should be postmenopausal >age 45... must not be on any osteoporosis medication; DXA BMD T-Score criteria and exclusion criteria such as renal/liver function, thyroid disease, hyperparathyroidism, etc.",
           "rationale": "The patient is 55 years old with confirmed osteoporosis (T-score <-2.5) and a vertebral compression fracture, meeting the basic inclusion criteria; however, her menopausal status is not explicitly stated, and there is no information on labs (renal function, liver enzymes, thyroid, calcium, alkaline phosphatase), prior medication use, or other exclusion factors needed to fully confirm eligibility."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 44,
@@ -3213,7 +3597,13 @@
           "cited_criterion": "Post-prandial heartburn (e.g. after a high-fat meal) in at least 2 months prior to the study (at least 2 times a week)",
           "rationale": "The patient has heartburn/acid reflux with a hiatal hernia found on imaging, but the vignette does not specify whether his heartburn is postprandial, its duration (at least 2 months), or frequency (at least 2 times/week), which are required to confirm inclusion. There is no mention of dysphagia, GI bleeding, ulcer, Barrett's esophagus, or malignancy, so exclusion criteria are not clearly triggered, but the key inclusion criterion cannot be verified from the given information."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:mixed",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 22,
@@ -3238,7 +3628,13 @@
           "cited_criterion": "Clinical Global Impression-Severity Score of 4 (Moderately Ill) or greater",
           "rationale": "The patient is a 15-year-old male with genetically confirmed Fragile X syndrome, fitting the age and diagnosis criteria, and no exclusionary conditions (e.g., psychosis, substance abuse, renal impairment) are mentioned. However, the vignette does not provide a Clinical Global Impression-Severity score or information on medication stability/psychotropic use, which are required inclusion criteria that cannot be assessed from the given data."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:consensus_hedge",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     },
     {
       "query_id": 1,
@@ -3263,7 +3659,8 @@
           "cited_criterion": "Inclusion: \"Patients of secondary hypogonadism on testosterone replacement therapy, newly diagnosed patients of secondary hypogonadism\" - trial context is Androgen Deficiency of the Aging Male",
           "rationale": "The patient is a 19-year-old with Kallmann syndrome (anosmia, low GnRH, low testosterone, cryptorchid/small testes) - a congenital form of secondary hypogonadism, not age-related (aging male) hypogonadism which this trial specifically targets. The trial population is designed for aging males with androgen deficiency, not young patients with congenital hypogonadotropic hypogonadism, making this patient a poor fit for this specific study population despite technically having secondary hypogonadism."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 20,
@@ -3288,7 +3685,8 @@
           "cited_criterion": "\"undergoing elective laparoscopic...inguinal hernia repair performed as a transabdominal preperitoneal procedure (TAP)\"",
           "rationale": "The patient is a 49-year-old adult scheduled for elective laparoscopic inguinal hernia repair, matching the inclusion criteria; he has no exclusion factors such as pregnancy, inability to consent, or age under 18. His ASA status is not explicitly stated but his history of mild, well-controlled dyslipidemia with unremarkable vitals suggests ASA 1-2, consistent with study population."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 10,
@@ -3313,7 +3711,8 @@
           "cited_criterion": "Age between 21-45 years old / Under 21 or over 45 years of age (exclusion); also Left-handed (exclusion)",
           "rationale": "The patient is 19 years old, which is below the required age range of 21-45, and she is also left-handed, which is an explicit exclusion criterion (trial requires right-handed participants). Both factors independently disqualify her from this trial."
         }
-      }
+      },
+      "tags": []
     },
     {
       "query_id": 4,
@@ -3338,7 +3737,13 @@
           "cited_criterion": "Exclusion: \"Multiple major joint involvement\" and \"Asymptomatic osteoarthritis of both knees, incapacitating arthritis, or inflammatory arthritis\"",
           "rationale": "The patient has osteoarthritis involvement in multiple major joints (hands with DIP nodules/Heberden's nodes and knees), which triggers the \"multiple major joint involvement\" exclusion criterion, making her ineligible for a trial focused solely on knee OA."
         }
-      }
+      },
+      "tags": [
+        {
+          "tag": "candidate_ground_truth_ambiguity:confident_disagreement",
+          "note": "Multiple independent model runs disagreed with physician ground truth on this pair in the same way -- see docs/findings.md for the cross-model methodology."
+        }
+      ]
     }
   ],
   "headline": {

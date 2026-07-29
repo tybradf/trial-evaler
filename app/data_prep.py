@@ -22,6 +22,7 @@ OUT_PATH = Path(__file__).resolve().parent / "data" / "dashboard_data.json"
 
 sys.path.insert(0, str(REPO_ROOT / "src" / "eval"))
 from judge_metrics import confusion_table, LABEL_NAME  # reuse, don't duplicate
+from taxonomy import get_tags
 
 
 def parse_list_col(x):
@@ -51,7 +52,20 @@ def build_confusion_matrices(all_df: pd.DataFrame) -> dict:
     return out
 
 
-def build_explorer_pairs(sample_path: Path, judge_df: pd.DataFrame) -> list:
+def load_ambiguity_patterns(path: Path) -> dict:
+    """Maps '{query_id}_{doc_id}' -> pattern (confident_disagreement / mixed /
+    consensus_hedge) from judge_metrics.py's cross-model ambiguity flag.
+    Returns {} gracefully if the file doesn't exist yet (e.g. only one
+    combo has been run so far, in which case this signal isn't meaningful
+    anyway -- see judge_metrics.py's own note about needing multiple combos)."""
+    if not path.exists():
+        return {}
+    df = pd.read_csv(path)
+    return {f"{row.query_id}_{row.doc_id}": row.pattern for row in df.itertuples()
+            if hasattr(row, "pattern")}
+
+
+def build_explorer_pairs(sample_path: Path, judge_df: pd.DataFrame, ambiguity: dict) -> list:
     sample = pd.read_csv(sample_path)
     sample["inclusion_criteria"] = sample["inclusion_criteria"].apply(parse_list_col)
     sample["exclusion_criteria"] = sample["exclusion_criteria"].apply(parse_list_col)
@@ -67,6 +81,17 @@ def build_explorer_pairs(sample_path: Path, judge_df: pd.DataFrame) -> list:
                 "cited_criterion": jrow["cited_criterion"],
                 "rationale": jrow["rationale"],
             }
+
+        tags = list(get_tags(int(row["query_id"]), row["doc_id"]))  # manual, hand-curated
+        key = f"{row['query_id']}_{row['doc_id']}"
+        if key in ambiguity:
+            tags.append({
+                "tag": f"candidate_ground_truth_ambiguity:{ambiguity[key]}",
+                "note": "Multiple independent model runs disagreed with physician "
+                        "ground truth on this pair in the same way -- see "
+                        "docs/findings.md for the cross-model methodology.",
+            })
+
         pairs.append({
             "query_id": int(row["query_id"]),
             "doc_id": row["doc_id"],
@@ -76,6 +101,7 @@ def build_explorer_pairs(sample_path: Path, judge_df: pd.DataFrame) -> list:
             "exclusion_criteria": row["exclusion_criteria"],
             "ground_truth": LABEL_NAME[int(row["ground_truth"])],
             "verdicts": verdicts,
+            "tags": tags,
         })
     return pairs
 
@@ -99,7 +125,8 @@ def main():
     data["confusion_matrices_test"] = build_confusion_matrices(test_results)
 
     data["explorer_pairs"] = build_explorer_pairs(
-        PROCESSED_DIR / "judge_test_sample_2022.csv", test_results
+        PROCESSED_DIR / "judge_test_sample_2022.csv", test_results,
+        load_ambiguity_patterns(PROCESSED_DIR / "judge_candidate_ground_truth_ambiguity_test2022.csv"),
     )
 
     test_summary = {r["combo"]: r for r in data["judge_test_summary"]}
