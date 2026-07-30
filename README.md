@@ -1,26 +1,29 @@
-# Clinical Trial Matching: An Evaluation Harness for RAG Pipelines
+# Clinical Trial Matching: An Eval Harness for RAG Pipelines
 
-**A retrieve-then-judge LLM pipeline for clinical trial eligibility misses a true exclusion in about 1 of every 120 cases on held-out data — down from 1 in 15 for a 2.5x cheaper model. Raw accuracy alone would have missed this entirely; the two models are statistically tied on it.**
+**A retrieve-then-judge LLM pipeline for clinical trial eligibility misses a true exclusion about twice as often with a cheaper model as with a safer one — a real, statistically significant gap (p=0.049 on a 500-case held-out sample), but a modest one, not the dramatic 8x gap an earlier, smaller sample suggested. Raw accuracy alone would point you at the wrong model for the reason that actually matters: it now favors the less-safe model.**
 
-This is a benchmark, not a product pitch: it scores a real retrieve-then-judge pipeline against physician ground truth on real clinical trials, and the deliverable is the eval harness — the retrieval comparison, the 3-class judge evaluation, the error taxonomy, the clinically-weighted cost metric — not the pipeline itself, which is a reference implementation used to exercise the benchmark.
+This is a benchmark, not a product pitch: it scores a real retrieve-then-judge pipeline against physician ground truth on real clinical trials, and the deliverable is the eval harness — the retrieval comparison, the 3-class judge evaluation, the error taxonomy, the clinically-weighted cost metric, and a statistical significance test on the headline claim itself — not the pipeline, which is a reference implementation used to exercise the benchmark.
 
-**[Full findings log →](docs/findings.md)** · Live demo: *(add your deployed URL here once live — see `app/README.md` for deployment)*
+**[Full findings log →](docs/findings.md)** · Report: `https://<you>.github.io/trial-evaler/` (static, deployed on push via GitHub Actions) · Live demo: linked from the report, running on Render (needs a real server — see [Deployment](#deployment))
 
 ---
 
 ## The headline, in full
 
-Scored against **physician-adjudicated eligibility judgments** from the TREC Clinical Trials track (2021 dev / 2022 held-out test), two configurations of the same judge — Claude Sonnet and Claude Haiku, both zero-shot — land within 3 points of each other on raw accuracy (44.2% vs. 46.7%). If that were the only number examined, they'd look interchangeable, and the cheaper model would win on price with no apparent cost.
+Scored against **physician-adjudicated eligibility judgments** from the TREC Clinical Trials track (2021 dev / 2022 held-out test, 500 pairs per class per model on the final run), raw accuracy actually favors the cheaper model — Haiku at 53.7% vs. Sonnet at 49.0%. If that were the only number examined, you'd pick Haiku and believe you gave up nothing.
 
-It isn't, and it doesn't. On the error that actually matters clinically — telling a patient they're eligible for a trial the physician excluded them from — **Sonnet misses 1 in 120; Haiku misses 1 in 15, an 8x gap that held up on data neither model was tuned on.** The real trade isn't accuracy for cost; it's a materially safer error profile for roughly $4 more per 1,000 patient-trial pairs — a difference that's trivial in absolute terms at any real deployment scale.
+You would have given something up. On the error that actually matters clinically — telling a patient they're eligible for a trial the physician excluded them from — **Sonnet misses a true exclusion in 2.6% of at-risk cases; Haiku misses 5.2%, roughly twice as often.** Fisher's exact test on this gap: p=0.049, significant at the conventional threshold, but only just — the 95% confidence intervals still overlap (Sonnet [1.5%, 4.4%], Haiku [3.6%, 7.5%]), so treat the direction as established and the exact magnitude as not yet tightly pinned down.
 
-The honest cost of the safer model: it hedges more. 44% of eligible-ground-truth cases get routed to `insufficient_information` rather than a direct answer, vs. 30% for the cheaper model. That's a real operational cost — more cases requiring human review — stated plainly rather than glossed over.
+**This number was revised down from an original 8x estimate, and that revision is part of the actual finding, not a correction to hide.** An initial 120-pair sample suggested Sonnet was 8x safer; running the same test at 1,000 pairs showed that estimate was mostly driven by Haiku drawing an unusually bad small sample, not by Sonnet being exceptionally safe. The true effect is real but roughly a quarter the size first claimed — which is exactly the kind of thing a properly-powered follow-up test exists to catch.
+
+The real trade isn't dollars — Sonnet costs about $4 more per 1,000 pairs than Haiku, trivial at any deployment scale. It's **human review capacity**: Sonnet routes 39.7% of eligible cases to `insufficient_information` instead of a direct answer, vs. Haiku's 31.3% — roughly 84 more cases per 1,000 needing a human reviewer. Human reviewer time almost certainly costs more per unit than LLM tokens, so this is likely the more expensive line item between the two models even without a precise reviewer-capacity number — though a real deployment decision would want that number specifically, not an assumption. Recommendation: Sonnet, on the strength of the (real, if modest) safety edge, with this tradeoff stated explicitly rather than glossed over.
 
 ## What's actually in here
 
 - **Real data throughout, one deliberate exception.** ~48,700 real ClinicalTrials.gov trials, physician-adjudicated relevance judgments from TREC, and a live ClinicalTrials.gov API v2 connection for the demo. The one synthetic component — patient vignettes — is TREC's own design choice (real patient records can't be public), not this project's.
 - **A retrieval comparison with a real, surprising finding.** General-purpose embeddings (`all-mpnet-base-v2`) beat a purpose-built biomedical model (NIH's MedCPT) by roughly 2x on nDCG@10 and recall — and the reason isn't "general models are just better," it's that MedCPT was trained on real PubMed search-log queries and specifically failed on textbook-style synthetic vignettes, a genre it never saw in training. Domain match on *content* isn't the same as domain match on *register*.
 - **A judge evaluated on the error that matters, not just accuracy.** A custom clinically-weighted cost metric (a missed exclusion costs 5x an over-exclusion, which costs 2x a hedge) that changes which model looks better — and is the reason it does.
+- **A headline claim that was tested, not just asserted.** Fisher's exact test and Wilson confidence intervals on the missed-exclusion gap, run at two sample sizes — the second run cut the original estimate from 8x down to a real, significant, but more modest ~2x, and that revision is documented as a finding, not quietly patched out.
 - **An error taxonomy built from real adjudication, not keyword heuristics.** Includes a confirmed hallucination (the judge cited "pregnant" as an exclusion reason for a patient whose vignette never mentions pregnancy), a criterion-scope misapplication (spinal radiation treated as equivalent to head/neck/brain radiation), a label/rationale self-contradiction, and a documented, honest account of a hallucination-detection heuristic's own false-positive rate and how it was fixed.
 - **A held-out test that actually held out.** Dev-set tuning happened only on 2021; the reported numbers above are 2022, touched for the first time after the config was locked.
 
@@ -37,6 +40,32 @@ python app.py
 ```
 
 See `app/README.md` for deployment (Render config included).
+
+## Deployment
+
+Two pieces, deployed separately, because they have genuinely different requirements:
+
+- **The report** (`/` and `/explore`) — pure precomputed data, no secrets, no server needed. Exported to
+  static HTML and published to **GitHub Pages** by `.github/workflows/deploy-pages.yml` on every push to
+  `main`.
+- **The live demo** (`/live`) — needs a running Python process and a secret `ANTHROPIC_API_KEY`, which GitHub
+  Pages cannot provide (it only serves static files). Deployed to **Render** by
+  `.github/workflows/deploy-render.yml`, which triggers Render's deploy hook on push.
+
+Both are triggered by GitHub Actions on push, matching the "push to `main`, it's live" workflow — they just
+publish to two different places because only one of them can be static.
+
+**One-time setup:**
+1. Create the Render web service (New → Blueprint → point at this repo; it reads `render.yaml`). Set
+   `ANTHROPIC_API_KEY` in Render's dashboard.
+2. Copy Render's Deploy Hook URL (service Settings page) into a GitHub repo secret named
+   `RENDER_DEPLOY_HOOK_URL`.
+3. Add a GitHub repo **variable** (not secret — it's just a URL) named `LIVE_APP_URL` set to your Render
+   app's `/live` URL, e.g. `https://trial-evaler.onrender.com/live`. The static site's "Live demo" link uses
+   this.
+4. Enable GitHub Pages: repo Settings → Pages → Source → "GitHub Actions."
+5. Push to `main`. Both workflows run; the report appears at `https://<you>.github.io/<repo>/` and the live
+   demo at your Render URL.
 
 ## Repo structure
 
