@@ -8,7 +8,6 @@ this file -- no pandas/pyarrow/torch dependency in production.
 Re-run this any time the underlying eval data changes; the app always
 reads app/data/dashboard_data.json, never the raw CSVs/parquet directly.
 """
-import ast
 import json
 import sys
 from pathlib import Path
@@ -26,11 +25,15 @@ from taxonomy import get_tags
 
 
 def parse_list_col(x):
+    """See src/judge/sample_pairs.py's comment: criteria columns are
+    JSON-encoded on write, must be json.loads'd on read -- ast.literal_eval
+    silently mis-parsed numpy-array-sourced cells (adjacent-string-literal
+    concatenation merging multiple criteria into one)."""
     if isinstance(x, list):
         return x
     if pd.isna(x) or x == "":
         return []
-    return ast.literal_eval(x)
+    return json.loads(x)
 
 
 def load_judge_results(judge_dir: Path) -> pd.DataFrame:

@@ -21,6 +21,8 @@ mis-splitting it. NOTE: verify this against a handful of real live responses
 on first run -- formatting is not perfectly consistent across older trials
 (pre-2008 records in particular).
 """
+from __future__ import annotations
+
 import re
 
 EXCLUSION_HEADER_RE = re.compile(r"exclusion\s*criteria\s*:?|exclusion\s*:", re.IGNORECASE)

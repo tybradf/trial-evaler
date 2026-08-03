@@ -33,7 +33,7 @@ def main():
 
     import sys
     sys.path.insert(0, str(APP_DIR))
-    from config import MODEL_CONFIGS
+    from config import MODEL_CONFIGS, PROJECT_BLURB, GITHUB_REPO_URL
 
     data = json.loads((APP_DIR / "data" / "dashboard_data.json").read_text())
 
@@ -43,6 +43,8 @@ def main():
         "nav": {"dashboard": "index.html", "explore": "explore.html", "live": args.live_url},
         "asset_prefix": "static/",
         "is_static_build": True,
+        "project_blurb": PROJECT_BLURB,
+        "github_url": GITHUB_REPO_URL,
     }
 
     OUT_DIR.mkdir(exist_ok=True)
@@ -64,7 +66,7 @@ def main():
     shutil.copytree(APP_DIR / "static", static_out, ignore=shutil.ignore_patterns("live.js"))
 
     print(f"Static site built -> {OUT_DIR}")
-    print(f"  index.html, explore.html, static/ (style.css, explore.js)")
+    print(f"  index.html, explore.html, static/ (style.css, site.js, explore.js)")
     print(f"  Live demo link points to: {args.live_url}")
 
 

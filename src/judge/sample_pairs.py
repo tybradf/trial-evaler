@@ -60,6 +60,20 @@ def main():
     keep_cols = ["query_id", "text", "doc_id", "brief_title", "inclusion_criteria",
                  "exclusion_criteria", "relevance"]
     sample = sample[keep_cols].rename(columns={"text": "patient_text", "relevance": "ground_truth"})
+
+    # IMPORTANT: corpus.parquet's list columns come back from pd.read_parquet
+    # as numpy arrays, not native Python lists. str()'ing a numpy array of
+    # strings omits the commas a real Python list would have, and reading
+    # that back with ast.literal_eval() doesn't error -- it silently exploits
+    # Python's adjacent-string-literal concatenation and merges every item
+    # into one, with no space at the seam (confirmed: "...upper limb" +
+    # "Subject with..." became "...upper limbSubject with..."). Explicit JSON
+    # serialization has no such ambiguity and is what every reader of this
+    # CSV (run_judge.py, data_prep.py, the bias-check scripts) now expects.
+    import json
+    sample["inclusion_criteria"] = sample["inclusion_criteria"].apply(lambda x: json.dumps(list(x)))
+    sample["exclusion_criteria"] = sample["exclusion_criteria"].apply(lambda x: json.dumps(list(x)))
+
     sample.to_csv(out_path, index=False)
 
     print(f"[{args.year}] sample saved -> {out_path}")

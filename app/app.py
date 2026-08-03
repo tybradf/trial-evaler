@@ -28,7 +28,7 @@ REPO_ROOT = APP_DIR.parent
 sys.path.insert(0, str(REPO_ROOT / "src" / "judge"))
 sys.path.insert(0, str(REPO_ROOT / "src" / "retrieval"))
 
-from config import MODEL_CONFIGS, DEFAULT_MODEL
+from config import MODEL_CONFIGS, DEFAULT_MODEL, PROJECT_BLURB, GITHUB_REPO_URL
 
 app = Flask(__name__)
 
@@ -62,6 +62,8 @@ def _base_context(active_page: str) -> dict:
         "asset_prefix": url_for("static", filename=""),
         "active_page": active_page,
         "is_static_build": False,
+        "project_blurb": PROJECT_BLURB,
+        "github_url": GITHUB_REPO_URL,
     }
 
 

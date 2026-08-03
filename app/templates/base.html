@@ -15,11 +15,20 @@
         <span class="brand-mark">RX</span>
         <span class="brand-text">Trial Match Eval</span>
       </a>
-      <nav class="site-nav">
-        <a href="{{ nav.dashboard }}" class="{{ 'active' if active_page == 'dashboard' }}">Eval report</a>
-        <a href="{{ nav.explore }}" class="{{ 'active' if active_page == 'explore' }}">Explore cases</a>
-        <a href="{{ nav.live }}" class="{{ 'active' if active_page == 'live' }}"{{ ' target="_blank" rel="noopener"' | safe if is_static_build }}>Live demo{{ ' ↗' if is_static_build }}</a>
-      </nav>
+      <div class="header-right">
+        <nav class="site-nav">
+          <a href="{{ nav.dashboard }}" class="{{ 'active' if active_page == 'dashboard' }}">Eval report</a>
+          <a href="{{ nav.explore }}" class="{{ 'active' if active_page == 'explore' }}">Explore cases</a>
+          <a href="{{ nav.live }}" class="{{ 'active' if active_page == 'live' }}"{{ ' target="_blank" rel="noopener"' | safe if is_static_build }}>Live demo{{ ' ↗' if is_static_build }}</a>
+        </nav>
+        <div class="info-popover-wrap">
+          <button class="info-icon-btn" id="info-icon-btn" aria-label="About this project" aria-expanded="false" aria-controls="info-popover">i</button>
+          <div class="info-popover" id="info-popover" role="dialog" aria-label="About this project" hidden>
+            <p>{{ project_blurb }}</p>
+            <a href="{{ github_url }}" target="_blank" rel="noopener">View source on GitHub →</a>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -32,5 +41,7 @@
       <p>Benchmark for retrieve-then-judge clinical trial matching pipelines, scored against physician ground truth (TREC Clinical Trials 2021/2022).</p>
     </div>
   </footer>
+
+  <script src="{{ asset_prefix }}site.js"></script>
 </body>
 </html>

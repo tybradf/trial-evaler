@@ -12,7 +12,6 @@ pairs got a unanimous verdict across all k runs.
     python src/eval/self_consistency_test.py --n_sample 40 --k 3
 """
 import argparse
-import ast
 import json
 from collections import Counter
 from pathlib import Path
@@ -29,11 +28,13 @@ OUT_PATH = PROCESSED_DIR / "self_consistency_results.jsonl"
 
 
 def parse_list_col(x):
+    """See src/judge/sample_pairs.py's comment: criteria columns are
+    JSON-encoded on write, must be json.loads'd on read."""
     if isinstance(x, list):
         return x
     if pd.isna(x) or x == "":
         return []
-    return ast.literal_eval(x)
+    return json.loads(x)
 
 
 def main():

@@ -17,7 +17,6 @@ few hundred tokens each. Check the sample file's row count first if you
 changed --n_per_class.
 """
 import argparse
-import ast
 import json
 from pathlib import Path
 
@@ -31,13 +30,16 @@ PROCESSED_DIR = Path(__file__).resolve().parents[2] / "data" / "processed"
 
 def parse_list_col(x):
     """inclusion_criteria/exclusion_criteria round-tripped through CSV as
-    string reprs of Python lists -- parse safely, don't silently swallow
-    malformed rows."""
+    JSON-encoded lists (sample_pairs.py explicitly json.dumps() these --
+    see that file's comment on why ast.literal_eval was unsafe here: it
+    silently mis-parsed numpy-array-sourced cells via Python's
+    adjacent-string-literal concatenation, merging multiple criteria into
+    one with no space at the seam). Parse with json.loads to match."""
     if isinstance(x, list):
         return x
     if pd.isna(x) or x == "":
         return []
-    return ast.literal_eval(x)
+    return json.loads(x)
 
 
 def main():
