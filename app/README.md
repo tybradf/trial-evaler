@@ -7,10 +7,10 @@ Flask UI for the trial-matching eval project. Three pages:
 - **`/explore` — Case browser.** Real held-out (2022) patient/trial pairs
   with full text, criteria, and every judge model's verdict side by side
   against physician ground truth. Includes cases the model got wrong on
-  purpose (e.g. the confirmed hallucination case), not just wins.
+  purpose (e.g. the confirmed hallucination case) for full transparency.
 - **`/live` — Live demo.** Free-text patient description, live search
   against currently-recruiting ClinicalTrials.gov trials, live judge call.
-  No ground truth here — proves the pipeline runs, doesn't score it.
+  Real time inference without ground truth.
 
 ## Model selection
 
@@ -40,19 +40,16 @@ Visit `http://localhost:5000`.
 **Before running `data_prep.py` for the first time**, `app/data/dashboard_data.json`
 ships with a small real-numbers sample (3 explorer cases, real dev/test
 metrics) so the dashboard and explore pages work out of the box for a
-quick look. Run `data_prep.py` to replace it with your full pipeline's
-actual output (all 120 held-out pairs, full confusion matrices, etc.)
-before using this for anything beyond a smoke test.
+quick look. Run `data_prep.py` to replace it with full pipeline's
+actual output (all held-out pairs, full confusion matrices, etc.).
 
-## What's NOT wired up yet (flagged, not hidden)
+## To Dos:
 
 - **Rate limiting** on `/api/live_judge` and `/api/live_search` -- both
-  call paid/external APIs with no cap as written. Add a per-session or
-  per-IP limit before any public deployment.
+  call paid/external APIs with no cap as written.
 - **`live_search.py`'s field/param names** (`query.cond`,
   `filter.overallStatus`) are per the ClinicalTrials.gov API v2 docs as of
-  when this was written -- same verify-on-first-run caveat as the rest of
-  the pipeline's API-dependent code.
+  when this was written.
 
 ## Deployment
 
@@ -62,11 +59,10 @@ The app splits into two deployable pieces -- see the top-level README's
 - `/` and `/explore` are pure precomputed data with no secrets, so they're
   exported to static HTML (`python app/build_static.py --live-url ...`)
   and published to GitHub Pages via `.github/workflows/deploy-pages.yml`.
-- `/live` needs a running server and a secret `ANTHROPIC_API_KEY`, which
-  GitHub Pages can't provide -- it deploys to Render via
+- `/live` needs a running server and a secret `ANTHROPIC_API_KEY`, deploys to Render via
   `.github/workflows/deploy-render.yml` + `render.yaml` instead.
 
-To build and preview the static export locally:
+To build and preview the static export locally (without the live demo):
 
 ```bash
 python app/build_static.py --live-url https://your-app.onrender.com/live
