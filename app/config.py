@@ -22,9 +22,9 @@ MODEL_CONFIGS = {
         "tradeoff_note": "On a 200-case held-out sample per model "
                           "misses a true exclusion in ~1.5% of "
                           "excluded cases (vs Haiku's 5.0%, about 3x safer, "
-                          "significant in the one-sided tested direction."
+                          "significant in the one-sided direction. "
                           "Routes "
-                          "39.3% of eligible cases to a human reviewer instead "
+                          "39.3% of cases to a human reviewer instead "
                           "of committing to an answer.",
     },
     "haiku_zero_shot": {
@@ -38,7 +38,7 @@ MODEL_CONFIGS = {
         "tradeoff_missed_exclusion_rate": 0.050,
         "tradeoff_abstention_rate": 0.315,
         "tradeoff_cost_per_1k_usd": 2.53,
-        "tradeoff_note": "On a 200-case held-out sample per model: "
+        "tradeoff_note": "On a 200-case held-out sample per model "
                           "misses a true exclusion in ~5.0% of "
                           "excluded cases, but routes only 31.5% of eligible "
                           "cases to a human reviewer, vs Sonnet's 39.3%.",
