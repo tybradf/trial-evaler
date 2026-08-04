@@ -9,6 +9,18 @@
   <link rel="stylesheet" href="{{ asset_prefix }}style.css">
 </head>
 <body>
+  <div class="intro-modal-backdrop" id="intro-modal-backdrop" hidden>
+    <div class="intro-modal" role="dialog" aria-modal="true" aria-label="About this project" id="intro-modal">
+      <button class="intro-modal-close" id="intro-modal-close" aria-label="Close">&times;</button>
+      <div class="intro-modal-mark">RX</div>
+      <p class="intro-modal-text">{{ project_blurb }}</p>
+      <div class="intro-modal-actions">
+        <button class="btn" id="intro-modal-dismiss">Got it</button>
+        <a href="{{ github_url }}" target="_blank" rel="noopener" class="btn btn-ghost" id="intro-modal-github">View source on GitHub →</a>
+      </div>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="{{ nav.dashboard }}">

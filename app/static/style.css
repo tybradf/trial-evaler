@@ -143,9 +143,87 @@ code, .mono, .metric-value, table.data td, .badge, input, select, textarea {
 }
 .info-popover a:hover { text-decoration: underline; }
 
+/* ---------- Intro modal (shown once per session on first landing) ---------- */
+.intro-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 27, 42, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+.intro-modal-backdrop[hidden] { display: none; }
+.intro-modal-backdrop.visible { opacity: 1; }
+
+.intro-modal {
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(15, 27, 42, 0.28);
+  padding: 32px 32px 28px;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  transform: scale(0.96) translateY(6px);
+  transition: transform 0.22s ease;
+}
+.intro-modal-backdrop.visible .intro-modal { transform: scale(1) translateY(0); }
+
+.intro-modal-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: white;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+.intro-modal-text {
+  font-size: 0.96rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+.intro-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.intro-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.intro-modal-close:hover { background: var(--paper); color: var(--ink); }
+
 @media (max-width: 640px) {
   .header-right { gap: 12px; }
   .info-popover { right: -12px; width: 240px; }
+  .intro-modal { padding: 28px 22px 24px; }
 }
 
 /* ---------- Hero / report header ---------- */
@@ -422,7 +500,8 @@ input[type="text"]:focus, textarea:focus, button:focus-visible, .model-option:fo
   outline-offset: 1px;
 }
 textarea { min-height: 130px; resize: vertical; }
-button.btn {
+.btn {
+  display: inline-block;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.9rem;
@@ -432,10 +511,12 @@ button.btn {
   padding: 11px 20px;
   border-radius: var(--radius);
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
-button.btn:hover { background: var(--teal-deep); }
-button.btn:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
-button.btn-ghost {
+.btn:hover { background: var(--teal-deep); color: white; }
+.btn:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
+.btn-ghost {
   background: transparent;
   color: var(--teal-deep);
   border: 1px solid var(--teal);
