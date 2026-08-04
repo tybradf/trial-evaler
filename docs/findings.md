@@ -6,7 +6,7 @@ what we did about it.
 
 ---
 
-## Day 1 — Data pipeline
+## 1 — Data pipeline
 
 **Sources.** TREC Clinical Trials 2021 (dev) + 2022 (held-out test), pulled
 via `ir_datasets`, with a direct-NIST-download fallback for 2022 qrels since
@@ -49,7 +49,7 @@ without namespacing) to avoid a silent ID-collision bug.
 
 ---
 
-## Day 2 — Retrieval
+## 2 — Retrieval
 
 **Embedding models.**
 - `general`: sentence-transformers/all-mpnet-base-v2 — strong
@@ -137,13 +137,13 @@ not just its subject domain.
 weakness. Flagged separately from the genre-mismatch failures.
 
 **Decision.** General-purpose embeddings (all-mpnet-base-v2) selected as
-the retrieval backbone feeding the Day 3 judge stage. The biomed comparison
+the retrieval backbone feeding the judge stage. The biomed comparison
 is retained in the eval report as a documented, explained finding, not
 pursued further as a candidate for production use.
 
 ---
 
-## Day 3 — Judge
+## 3 — Judge
 
 **Setup.** Structured output via forced tool-use (label / cited_criterion /
 rationale), not free-text parsing. Sampled 120 dev pairs (60 excluded / 60
@@ -157,7 +157,7 @@ harness).** 12/15 label matches. Reasoning quality is good: citations are
 grounded in real criteria text, negation and numeric thresholds (BMI vs.
 cutoff, age vs. range) handled correctly.
 
-Three things worth carrying into the Day 4 error taxonomy with real
+Three things worth carrying into the error taxonomy with real
 examples attached, not just re-derived from aggregate numbers later:
 
 1. **Two direction-errors, different failure types.** Query 62/NCT01591005:
@@ -200,7 +200,7 @@ Two structurally different models agreeing with each other but disagreeing
 with the physician judgment, on the same two pairs, is real evidence these
 are candidate ground-truth-ambiguity cases (physician likely had chart
 context beyond the topic text) rather than model errors -- flagged as a
-distinct category in the Day 4 taxonomy, not counted against the models.
+distinct category in the taxonomy, not counted against the models.
 
 **Most interesting single data point: query 62/NCT01591005.** Haiku
 confidently answered `eligible` (wrong, dangerous direction -- ground truth
@@ -216,7 +216,7 @@ Haiku's one. A real precision-vs-caution tradeoff -- Sonnet is less often
 flatly "correct" but arguably safer -- exactly what the asymmetric-cost
 framing in the full eval harness is designed to quantify.
 
-## Day 4 — Full eval harness
+## 4 — Full eval harness
 
 **Headline numbers (n=120 per combo, 2021 dev set):**
 
@@ -318,7 +318,7 @@ cheaper model picks up the hedging *phrasing* without reliably pairing it
 with the correct *label*, while Sonnet doesn't show this under either
 prompt. Low rate (2.5%), isolated to one combo -- kept as a documented
 finding rather than treated as a bug to fix, and worth folding into the
-Day 5 cost/quality frontier as a self-consistency dimension, not just
+cost/quality frontier as a self-consistency dimension, not just
 accuracy-per-dollar.
 
 **Correction to the exclusion-list-length section above: query
@@ -390,7 +390,7 @@ absent from context), one confirmed criterion-scope misapplication (query
 confirmed label/rationale self-contradiction (query 24/NCT02485808 --
 rationale explicitly concludes gross hematuria is absent and no exclusion
 applies, but the structured label says excluded anyway; more damning than
-the Day 3 example since it uses no hedging language at all, so it wouldn't
+the example since it uses no hedging language at all, so it wouldn't
 have been caught by `check_label_consistency.py`'s phrase-matching).
 Everything else in the 33 is heuristic noise, not a real model error.
 
@@ -426,8 +426,8 @@ ways worth correcting before it goes in an interview:
    invites an obvious interview counter: "couldn't embeddings have solved
    this?" -- and the honest answer is yes, likely.
 
-The real, defensible version of the ceiling claim is the confident_
-disagreement set from Day 4, not the hallucination screen: cases like
+The real, defensible version of the ceiling claim is the confident
+disagreement set, not the hallucination screen: cases like
 ischemic vs. structural mitral regurgitation, or "renal failure requiring
 RRT" meaning chronic dialysis-dependence vs. incidental acute dialysis
 during sepsis. No amount of better grounding-check tooling resolves those
@@ -437,7 +437,7 @@ apart "this is an engineering problem, solvable with a better check" from
 "this is a judgment problem, solvable only with domain expertise" -- and
 being able to point to a concrete example of each from the same project.
 
-## Day 5 — Cost/quality frontier
+## 5 — Cost/quality frontier
 
 | combo | $/1k pairs | accuracy_strict | mean_clinical_cost | abstention_rate | missed_exclusion_rate |
 |---|---|---|---|---|---|
@@ -474,7 +474,7 @@ which errors you're willing to tolerate, not the budget -- which is
 exactly why the clinically-weighted metric was worth building instead of
 leaning on raw accuracy alone.
 
-## Day 5 (cont.) — Held-out test, 2022, sonnet_zero_shot
+## 5 (cont.) — Held-out test, 2022, sonnet_zero_shot
 
 | metric | dev (2021) | test (2022) |
 |---|---|---|
@@ -508,7 +508,7 @@ headline: this config is safe out of sample, even though it's not highly
 decisive out of sample.
 
 **Open hypothesis, not yet confirmed:** 2022's topics are the cleaner,
-more textbook-style vignettes identified in Day 2 (shorter, less like real
+more textbook-style vignettes (shorter, less like real
 clinical notes) -- plausible this contributes to higher abstention, since
 a terser vignette gives less to positively confirm eligibility against.
 Worth checking if time allows; not chased further today.
@@ -553,7 +553,7 @@ point in this decision -- both configs are cheap enough in absolute terms
 that cost was never the binding constraint; the choice was entirely about
 which error profile is acceptable for a clinical-adjacent use case.
 
-## Day 6 — Flask UI
+## 6 — Flask UI
 
 Three views (dashboard, case explorer, live demo), model selection
 centralized in `app/config.py` as a single source of truth read by both
@@ -573,7 +573,7 @@ Live-tested by the user against real patient input: live ClinicalTrials.gov
 search + live judge call worked end-to-end, no errors, multiple trials
 tried. Explorer-page UI organization flagged as a follow-up, not urgent.
 
-## Day 7 — Deploy config + README
+## 7 — Deploy config + README
 
 Added `app/requirements.txt` (deploy-only, lightweight), `Procfile` and
 `render.yaml` for deployment, updated `app.py` to respect the `PORT` env
@@ -592,7 +592,7 @@ through setup instructions.
 
 Prompted by explicitly targeting an LLM-evaluation-titled role: raw
 accuracy and a single held-out run aren't enough rigor for that audience
-specifically. Added three checks the original 7-day plan didn't include.
+specifically. Added three checks the original plan didn't include.
 
 **Tier 1a: statistical significance on the headline claim.** The
 missed-exclusion-rate gap (1/120 vs 8/120, reported as "8x") needed a
