@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Trial Match Eval{% endblock %}</title>
+  <title>{% block title %}Trial Matcher{% endblock %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset_prefix }}style.css">
@@ -12,7 +12,7 @@
   <div class="intro-modal-backdrop" id="intro-modal-backdrop" hidden>
     <div class="intro-modal" role="dialog" aria-modal="true" aria-label="About this project" id="intro-modal">
       <button class="intro-modal-close" id="intro-modal-close" aria-label="Close">&times;</button>
-      <div class="intro-modal-mark">RX</div>
+      <div class="intro-modal-mark">TM</div>
       <p class="intro-modal-text">{{ project_blurb }}</p>
       <div class="intro-modal-actions">
         <button class="btn" id="intro-modal-dismiss">Got it</button>
@@ -24,8 +24,8 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="{{ nav.dashboard }}">
-        <span class="brand-mark">RX</span>
-        <span class="brand-text">Trial Match Eval</span>
+        <span class="brand-mark">TM</span>
+        <span class="brand-text">Trial Matcher</span>
       </a>
       <div class="header-right">
         <nav class="site-nav">
