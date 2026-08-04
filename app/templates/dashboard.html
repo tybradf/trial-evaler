@@ -1,16 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Eval report — Trial Match Eval{% endblock %}
+{% block title %}Eval report — Trial Matcher{% endblock %}
 {% block content %}
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">Held-out test set — TREC Clinical Trials 2022</span>
-    <h1>A retrieve-then-judge pipeline misses a true exclusion in about 1 of every 120 cases — and we know exactly which trade bought that.</h1>
+    <span class="eyebrow">LLM Matchign Tool for Patient with  Clinical Trials</span>
+    <h1>A retrieve-then-judge pipeline that parses patient records and matches with live clinical trials.</h1>
     <p class="hero-sub">
-      This benchmark scores an LLM-judged clinical trial matching pipeline against real physician
-      eligibility determinations across {{ '{:,}'.format(data.headline.n_trials) }} trials. The finding isn't
-      just an accuracy number — it's which errors the model makes, how often, and what it costs to avoid the
-      dangerous ones.
+      This evaluation scores an LLM-judged clinical trial matching pipeline against real physician
+      eligibility determinations across {{ '{:,}'.format(data.headline.n_trials) }} trials. The pipeline misses a true exclusion in only 1 of 120 cases.
     </p>
   </div>
 </section>
@@ -18,8 +16,8 @@
 <section class="block">
   <div class="wrap">
     <div class="section-head">
-      <h2>Headline numbers, held-out data</h2>
-      <div class="section-note">Sonnet (zero-shot), the selected production config — see the model comparison below for why.</div>
+      <h2>Model Performance Metrics (TREC Clinical Trials held-out dat, 2022)</h2>
+      <div class="section-note">Sonnet (zero-shot) is the selected optimal LLM judge.</div>
     </div>
     <div class="metric-grid">
       <div class="metric-panel">
@@ -30,12 +28,12 @@
       <div class="metric-panel">
         <div class="metric-label">Accuracy, when committed</div>
         <div class="metric-value">{{ '%.1f' % (data.headline.sonnet_accuracy_committed * 100) }}%</div>
-        <div class="metric-ref">excludes hedged cases</div>
+        <div class="metric-ref">excludes deferred cases</div>
       </div>
       <div class="metric-panel">
         <div class="metric-label">Abstention rate</div>
         <div class="metric-value amber">{{ '%.1f' % (data.headline.sonnet_abstention_rate * 100) }}%</div>
-        <div class="metric-ref">routed to human review</div>
+        <div class="metric-ref">LLM judge defers and routes to human review</div>
       </div>
       <div class="metric-panel">
         <div class="metric-label">Corpus size</div>
@@ -49,8 +47,8 @@
 <section class="block">
   <div class="wrap">
     <div class="section-head">
-      <h2>Choose the judge model</h2>
-      <div class="section-note">Both are locked-in, evaluated configs — not a hypothetical toggle. Numbers are real held-out results.</div>
+      <h2>LLM-judge model selection</h2>
+      <div class="section-note">Performance metrics are based on held out data from 2022</div>
     </div>
     <div class="model-toggle">
       {% for key, cfg in models.items() %}
@@ -75,8 +73,8 @@
 <section class="block">
   <div class="wrap">
     <div class="section-head">
-      <h2>Retrieval: general-purpose vs. biomedical embeddings</h2>
-      <div class="section-note">General-purpose embeddings won — biomedical (MedCPT) failed specifically on textbook-style vignettes, not real clinical notes. Full explanation in the write-up.</div>
+      <h2>RAG: general-purpose vs. biomedical embeddings</h2>
+      <div class="section-note">General-purpose embeddings won — biomedical (MedCPT) failed on these type of medical language</div>
     </div>
     <table class="data">
       <thead>
@@ -102,7 +100,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Judge comparison — held-out (2022)</h2>
-      <div class="section-note">Raw accuracy is nearly tied between models. The clinically-weighted cost and missed-exclusion rate are what actually differentiate them.</div>
+      <div class="section-note">Accuracy is nearly tied between models. But more importantly, the clinically-weighted cost and missed-exclusion rate are substantially different.</div>
     </div>
     <table class="data">
       <thead>
@@ -129,7 +127,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Confusion matrix — Sonnet, held-out</h2>
-      <div class="section-note">Rows: physician ground truth. Columns: judge verdict.</div>
+      <div class="section-note">Metrics only shown for selected model</div>
     </div>
     {% set cm = data.confusion_matrices_test.get('sonnet_zero_shot') %}
     {% if cm %}
